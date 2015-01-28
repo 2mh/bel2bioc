@@ -1,0 +1,84 @@
+BEL::Language::Comment ##################################################################################
+BEL::Language::Comment # Document Properties Section
+BEL::Language::Newline 
+BEL::Language::DocumentProperty SET DOCUMENT Name = "BEL Framework Small Corpus Document"
+BEL::Language::DocumentProperty SET DOCUMENT Description = "Approximately 2000 hand curated statements drawn from 57 PubMeds."
+BEL::Language::DocumentProperty SET DOCUMENT Version = 20131211
+BEL::Language::DocumentProperty SET DOCUMENT Copyright = "Copyright (c) 2011-2012, Selventa. All Rights Reserved."
+BEL::Language::DocumentProperty SET DOCUMENT Authors = Selventa
+BEL::Language::DocumentProperty SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
+BEL::Language::DocumentProperty SET DOCUMENT ContactInfo = "support@belframework.org"
+BEL::Language::Newline 
+BEL::Language::Comment ##################################################################################
+BEL::Language::Comment # Definitions Section
+BEL::Language::Newline 
+BEL::Namespace::NamespaceDefinition CHEBI
+BEL::Namespace::NamespaceDefinition CHEBIID
+BEL::Namespace::NamespaceDefinition EGID
+BEL::Namespace::NamespaceDefinition GOBP
+BEL::Namespace::NamespaceDefinition HGNC
+BEL::Namespace::NamespaceDefinition MESHCS
+BEL::Namespace::NamespaceDefinition MESHD
+BEL::Namespace::NamespaceDefinition MESHPP
+BEL::Namespace::NamespaceDefinition MGI
+BEL::Namespace::NamespaceDefinition RGD
+BEL::Namespace::NamespaceDefinition SCHEM
+BEL::Namespace::NamespaceDefinition SCOMP
+BEL::Namespace::NamespaceDefinition SDIS
+BEL::Namespace::NamespaceDefinition SFAM
+BEL::Namespace::NamespaceDefinition SPAC
+BEL::Language::Newline 
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION Anatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/anatomy.belanno"
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION Cell AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell.belanno"
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION CellLine AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-line.belanno"
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION CellStructure AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-structure.belanno"
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION Disease AS URL "http://resource.belframework.org/belframework/20131211/annotation/disease.belanno"
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION MeSHAnatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/mesh-anatomy.belanno"
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION Species AS URL "http://resource.belframework.org/belframework/20131211/annotation/species-taxonomy-id.belanno"
+BEL::Language::AnnotationDefinition DEFINE ANNOTATION TextLocation AS LIST {"Abstract","Results","Legend","Review"}
+BEL::Language::Newline 
+BEL::Language::StatementGroup SET STATEMENT_GROUP = "Group 1"
+BEL::Language::Newline 
+BEL::Language::Parameter HGNC:IL25
+BEL::Language::Term p(HGNC:IL25)
+BEL::Language::Parameter HGNC:JUNB
+BEL::Language::Term p(HGNC:JUNB)
+BEL::Language::Statement p(HGNC:IL25) increases p(HGNC:JUNB)
+BEL::Language::Parameter HGNC:VIP
+BEL::Language::Term p(HGNC:VIP)
+BEL::Language::Parameter HGNC:VIPR1
+BEL::Language::Term p(HGNC:VIPR1)
+BEL::Language::Term cat(p(HGNC:VIPR1))
+BEL::Language::Statement p(HGNC:VIP) directlyIncreases cat(p(HGNC:VIPR1))
+BEL::Language::Parameter HGNC:VEGFA
+BEL::Language::Term p(HGNC:VEGFA)
+BEL::Language::Parameter GOBP:angiogenesis
+BEL::Language::Term bp(GOBP:angiogenesis)
+BEL::Language::Statement p(HGNC:VEGFA) increases bp(GOBP:angiogenesis)
+BEL::Language::Parameter HGNC:MMP9
+BEL::Language::Term p(HGNC:MMP9)
+BEL::Language::Term cat(p(HGNC:MMP9))
+BEL::Language::Parameter HGNC:VEGFA
+BEL::Language::Term p(HGNC:VEGFA)
+BEL::Language::Statement cat(p(HGNC:MMP9)) increases p(HGNC:VEGFA)
+BEL::Language::Parameter HGNC:CTNNB1
+BEL::Language::Term p(HGNC:CTNNB1)
+BEL::Language::Parameter HGNC:CDH1
+BEL::Language::Term p(HGNC:CDH1)
+BEL::Language::Term complex(p(HGNC:CTNNB1),p(HGNC:CDH1))
+BEL::Language::Parameter HGNC:CTNNB1
+BEL::Language::Term p(HGNC:CTNNB1)
+BEL::Language::Term tscript(p(HGNC:CTNNB1))
+BEL::Language::Statement complex(p(HGNC:CTNNB1),p(HGNC:CDH1)) directlyDecreases tscript(p(HGNC:CTNNB1))
+BEL::Language::Parameter HGNC:NFKBIA
+BEL::Language::Parameter P
+BEL::Language::Parameter S
+BEL::Language::Parameter 32
+BEL::Language::Term pmod(P,S,32)
+BEL::Language::Term p(HGNC:NFKBIA,pmod(P,S,32))
+BEL::Language::Parameter HGNC:NFKBIA
+BEL::Language::Term p(HGNC:NFKBIA)
+BEL::Language::Term deg(p(HGNC:NFKBIA))
+BEL::Language::Statement p(HGNC:NFKBIA,pmod(P,S,32)) directlyIncreases deg(p(HGNC:NFKBIA))
+BEL::Language::Newline 
+BEL::Language::UnsetStatementGroup UNSET STATEMENT_GROUP
