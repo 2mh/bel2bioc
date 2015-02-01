@@ -1,0 +1,67 @@
+##################################################################################
+# Document Properties Section
+
+SET DOCUMENT Name = "BEL Framework Small Corpus Document"
+SET DOCUMENT Description = "Approximately 2000 hand curated statements drawn from 57 PubMeds."
+SET DOCUMENT Version = 20131211
+SET DOCUMENT Copyright = "Copyright (c) 2011-2012, Selventa. All Rights Reserved."
+SET DOCUMENT Authors = Selventa
+SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
+SET DOCUMENT ContactInfo = "support@belframework.org"
+
+##################################################################################
+# Definitions Section
+
+DEFINE NAMESPACE CHEBI AS URL "http://resource.belframework.org/belframework/20131211/namespace/chebi.belns"
+DEFINE NAMESPACE CHEBIID AS URL "http://resource.belframework.org/belframework/20131211/namespace/chebi-ids.belns"
+DEFINE NAMESPACE EGID AS URL "http://resource.belframework.org/belframework/20131211/namespace/entrez-gene-ids.belns"
+DEFINE NAMESPACE GOBP AS URL "http://resource.belframework.org/belframework/20131211/namespace/go-biological-process.belns"
+DEFINE NAMESPACE HGNC AS URL "http://resource.belframework.org/belframework/20131211/namespace/hgnc-human-genes.belns"
+DEFINE NAMESPACE MESHCS AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-cellular-structures.belns"
+DEFINE NAMESPACE MESHD AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-diseases.belns"
+DEFINE NAMESPACE MESHPP AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-processes.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20131211/namespace/mgi-mouse-genes.belns"
+DEFINE NAMESPACE RGD AS URL "http://resource.belframework.org/belframework/20131211/namespace/rgd-rat-genes.belns"
+DEFINE NAMESPACE SCHEM AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-legacy-chemicals.belns"
+DEFINE NAMESPACE SCOMP AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-named-complexes.belns"
+DEFINE NAMESPACE SDIS AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-legacy-diseases.belns"
+DEFINE NAMESPACE SFAM AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-protein-families.belns"
+DEFINE NAMESPACE SPAC AS URL "http://resource.belframework.org/belframework/20131211/namespace/swissprot-ids.belns"
+
+# Dummy definitions
+DEFINE NAMESPACE PFH AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+DEFINE NAMESPACE NCH AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+
+DEFINE ANNOTATION Anatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/anatomy.belanno"
+DEFINE ANNOTATION Cell AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell.belanno"
+DEFINE ANNOTATION CellLine AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-line.belanno"
+DEFINE ANNOTATION CellStructure AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-structure.belanno"
+DEFINE ANNOTATION Disease AS URL "http://resource.belframework.org/belframework/20131211/annotation/disease.belanno"
+DEFINE ANNOTATION MeSHAnatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/mesh-anatomy.belanno"
+DEFINE ANNOTATION Species AS URL "http://resource.belframework.org/belframework/20131211/annotation/species-taxonomy-id.belanno"
+DEFINE ANNOTATION TextLocation AS LIST {"Abstract","Results","Legend","Review"}
+
+SET STATEMENT_GROUP = "Group 1"
+
+complex(p(HGNC:ITGA5), p(HGNC:ITGB3), p(HGNC:FN1)) increases bp(GO:"cell migration")
+tscript(p(HGNC:EP300)) increases tscript(p(HGNC:SMAD3))
+p(HGNC:NRP1) increases kin(p(HGNC:FLT1))
+tscript(p(MGI:Trp63)) decreases bp(MESHPP:Apoptosis)
+p(PFH:"WNT Family") increases p(HGNC:CTNNB1)
+p(HGNC:HOXD3) increases p(HGNC:ITGAV)
+tscript(p(HGNC:TP53)) directlyIncreases p(HGNC:MDM2)
+p(PFH:"Hedgehog Family") isA p(HGNC:SHH)
+kin(complex(NCH:"IkappaB Kinase Complex")) directlyDecreases p(HGNC:NFKBIA)
+tscript(complex(NCH:"Nfkb Complex")) increases p(HGNC:CXCL1)
+p(HGNC:MAPK1,pmod(P,Y,187)) directlyIncreases kin(p(HGNC:MAPK1))
+Resolvin E1 increases cat(p(HGNC:CMKLR1))
+kin(p(PFH:"SRC Family")) isA kin(p(HGNC:SRC))
+p(HGNC:HSPB1,pmod(P,S)) decreases path(SDIS:"endothelial barrier function")
+p(HGNC:FOXA2) decreases Goblet cell
+p(HGNC:ATG5) increases bp(GO:autophagy)
+tscript(p(HGNC:TP53)) directlyDecreases p(HGNC:BIRC5)
+bp(GO:"response to hypoxia") increases kin(complex(NCH:"AMP Activated Protein Kinase Complex"))
+phos(p(HGNC:PPP1R15A)) decreases p(HGNC:EIF2S1,pmod(P,S,52))
+a(SCHEM:FMLP) increases cat(complex(NCH:"NADPH Oxidase Complex"))
+
+UNSET STATEMENT_GROUP
