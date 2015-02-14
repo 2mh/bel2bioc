@@ -144,14 +144,17 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 	elsif !obj.nil?
 		if sublevel == 0
 			if entity == :subject
-				relation["cause"].refid = "r" + String($relationId)
+				unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
+					relation["cause"].refid = "r" + String($relationId)
+				else
+					relation["cause"].refid = "a" + String($annotationId)
 			elsif entity == :object
 				relation["theme"].refid = "r" + String($annotationId)
 			end
 		end
 		
 		if obj.instance_of?(BEL::Language::Term)
-			if !obj.fx.short_form == :proteinAbundance
+			unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
 				relation = SimpleBioC::Relation.new(document)
 				relation.id = "r" + String($relationId)
 				relation.infons["type"] = obj.fx.long_form
@@ -166,7 +169,11 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 						node = SimpleBioC::Node.new(relation)
 						node.role = "member"
 						if arg.instance_of?(BEL::Language::Term)
-							node.refid = "r" + String($relationId)
+							unless arg.arguments.length == 1 and arg.arguments[0].instance_of?(BEL::Language::Parameter)
+								node.refid = "r" + String($relationId)
+							else
+								node.refid = "a" + String($annotationId)
+							end
 						elsif arg.instance_of?(BEL::Language::Parameter)
 							node.refid = "a" + String($annotationId)
 						end
@@ -178,17 +185,24 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 					walkTerm(arg, sublevel + 1, passage, document)
 					node = SimpleBioC::Node.new(relation)
 					node.role = "self"
-					# Code duplication -> refactoring
-					if arg.instance_of?(BEL::Language::Term)
-						node.refid = "r" + String($relationId)
-					elsif arg.instance_of?(BEL::Language::Parameter)
-						node.refid = "a" + String($annotationId)
-					end
+					node.refid = "r" + String($relationId)
 					relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
 					relation.nodes << node
 				end
 			else
-				puts "foobar"
+				annotation = SimpleBioC::Annotation.new(document)
+				location = SimpleBioC::Location.new(annotation)
+				location.offset = nil
+				location.length = nil
+				annotation.locations << location
+				passage.annotations << annotation
+				annotation.id = "a" + String($annotationId)
+				$annotationId += 1
+				annotation.infons["BEL (full)"] = String(obj)
+				annotation.infons["Entrez GeneID"] = nil # dummy value
+				annotation.infons[obj.arguments[0].ns] = obj.arguments[0].value
+				annotation.text = obj.arguments[0].value
+				
 			end
 		else
 			annotation = SimpleBioC::Annotation.new(document)
