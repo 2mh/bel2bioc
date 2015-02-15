@@ -148,6 +148,7 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 					relation["cause"].refid = "r" + String($relationId)
 				else
 					relation["cause"].refid = "a" + String($annotationId)
+				end
 			elsif entity == :object
 				relation["theme"].refid = "r" + String($annotationId)
 			end
@@ -165,6 +166,7 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 				# Recursive call
 				if obj.arguments.length > 1
 					obj.arguments.each do |arg|
+						prevannotId = $annotationId
 						walkTerm(arg, sublevel + 1, passage, document)
 						node = SimpleBioC::Node.new(relation)
 						node.role = "member"
@@ -172,10 +174,10 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 							unless arg.arguments.length == 1 and arg.arguments[0].instance_of?(BEL::Language::Parameter)
 								node.refid = "r" + String($relationId)
 							else
-								node.refid = "a" + String($annotationId)
+								node.refid = "a" + String(prevannotId)
 							end
 						elsif arg.instance_of?(BEL::Language::Parameter)
-							node.refid = "a" + String($annotationId)
+							node.refid = "a" + String(prevannotId)
 						end
 						relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
 						relation.nodes << node
