@@ -62,6 +62,8 @@ def walkStatement(obj, document)
 			relation.id = "r" + String($relationId)
 			incrRel()
 			relation.infons["type"] = String(obj.relationship)
+			relation.infons["BEL (full)"] = String(obj)
+			relation.infons["BEL (relative)"] = String(obj).clone
 			causeNode = SimpleBioC::Node.new(relation)
 			causeNode.role = "cause"
 			themeNode = SimpleBioC::Node.new(relation)
@@ -77,13 +79,13 @@ def walkStatement(obj, document)
 		end
 		
 		# Subject annotation
-		walkTerm(obj.subject, 0, passage, document, tripleRelation, :subject)
+		walkTerm(obj.subject, 0, passage, document, tripleRelation, relation, :subject)
 		
 		#http://stackoverflow.com/a/252253
 		unless obj.relationship.nil?
 		
 			# Object annotation
-			walkTerm(obj.object, 0, passage, document, tripleRelation, :object)
+			walkTerm(obj.object, 0, passage, document, tripleRelation, relation, :object)
 			
 			# Relation annotation
 			annotation = SimpleBioC::Annotation.new(document)
@@ -102,7 +104,7 @@ def walkStatement(obj, document)
 end
 
 # Recursively walk terms and parameter (leaf nodes)
-def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entity = nil)
+def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil, relation = nil,  entity = nil)
 	if $toScreen
 		tab = "\t"*2*sublevel 
 		if obj.instance_of?(BEL::Language::Term)
@@ -145,12 +147,17 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 		if sublevel == 0
 			if entity == :subject
 				unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
-					relation["cause"].refid = "r" + String($relationId)
+					relationTriple["cause"].refid = "r" + String($relationId)
 				else
-					relation["cause"].refid = "a" + String($annotationId)
+					relationTriple["cause"].refid = "a" + String($annotationId)
 				end
+				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(obj), relationTriple["cause"].refid
 			elsif entity == :object
-				relation["theme"].refid = "r" + String($annotationId)
+				relationTriple["theme"].refid = "r" + String($annotationId)
+				
+				#substitute and strip remaining brackets
+				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub(String(obj), relationTriple["theme"].refid).tr(')(','')
+				
 			end
 		end
 		
@@ -187,7 +194,7 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 					walkTerm(arg, sublevel + 1, passage, document)
 					node = SimpleBioC::Node.new(relation)
 					node.role = "self"
-					node.refid = "r" + String($relationId)
+					node.refid = "a" + String($annotationId)
 					relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
 					relation.nodes << node
 				end
@@ -203,9 +210,12 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 				annotation.infons["BEL (full)"] = String(obj)
 				annotation.infons["Entrez GeneID"] = nil # dummy value
 				annotation.infons[obj.arguments[0].ns] = obj.arguments[0].value
-				annotation.text = obj.arguments[0].value
+				annotation.text = nil
 				
 			end
+		
+		elsif obj.instance_of?(BEL::Language::Statement)
+			walkStatement(obj, document)
 		else
 			annotation = SimpleBioC::Annotation.new(document)
 			location = SimpleBioC::Location.new(annotation)
@@ -218,7 +228,7 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relation = nil, entit
 			annotation.infons["BEL (full)"] = String(obj)
 			annotation.infons["Entrez GeneID"] = nil # dummy value
 			annotation.infons[obj.ns] = obj.value
-			annotation.text = obj.value
+			annotation.text = nil
 		end
 	end
 end
