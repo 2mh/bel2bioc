@@ -4,20 +4,31 @@ require 'colorize'
 
 $slice = 30
 $toScreen = false
+$debug = false
 
-$passageCounter = 100
+$documentId = 1000
 $annotationId = 100
 $relationId = 100
 
-$debug = false
+def counterReset()
+	$documentId = 1000
+	$annotationId = 100
+	$relationId = 100
+end
 
-
-def incrRel()
-	$relationId += 1
+def increment(id)
+	case id
+	when :document
+		$documentId += 1
+	when :relation
+		$relationId += 1
+	when :annotation
+		$annotationId += 1
+	end
 end
 
 # Walk statement tree from the root
-def walkStatement(obj, document)
+def walkStatement(obj, document, passage = nil, recursiveStatement = false)
 	if $debug
 		puts "[[ #{obj.to_bel} ]]\n".bold
 	else
@@ -48,19 +59,12 @@ def walkStatement(obj, document)
 
 	# Output of parsed nodes to BioC-XML
 	else
-		# Instantiate passage
-		passage = SimpleBioC::Passage.new(document)
-		passage.infons["num"] = $passageCounter
-		$passageCounter += 1
-		passage.offset = 0
-		document.passages << passage
-		
 		unless obj.relationship.nil?
 			
 			# Relationship triple
 			relation = SimpleBioC::Relation.new(document)
 			relation.id = "r" + String($relationId)
-			incrRel()
+			increment(:relation)
 			relation.infons["type"] = String(obj.relationship)
 			relation.infons["BEL (full)"] = String(obj)
 			relation.infons["BEL (relative)"] = String(obj).clone
@@ -79,19 +83,19 @@ def walkStatement(obj, document)
 		end
 		
 		# Subject annotation
-		walkTerm(obj.subject, 0, passage, document, tripleRelation, relation, :subject)
+		walkTerm(obj.subject, 0, passage, document, tripleRelation, relation, :subject, recursiveStatement)
 		
 		#http://stackoverflow.com/a/252253
 		unless obj.relationship.nil?
 		
 			# Object annotation
-			walkTerm(obj.object, 0, passage, document, tripleRelation, relation, :object)
+			walkTerm(obj.object, 0, passage, document, tripleRelation, relation, :object, recursiveStatement)
 			
 			# Relation annotation
 			annotation = SimpleBioC::Annotation.new(document)
 			annotation.id = "a" + String($annotationId)
 			tripleRelation["trigger"].refid = annotation.id
-			$annotationId += 1
+			increment(:annotation)
 			annotation.infons["trigger"] = obj.relationship
 			annotation.text = nil
 			location = SimpleBioC::Location.new(annotation)
@@ -104,7 +108,7 @@ def walkStatement(obj, document)
 end
 
 # Recursively walk terms and parameter (leaf nodes)
-def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil, relation = nil,  entity = nil)
+def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil, relation = nil, entity = nil, recursiveStatement = false)
 	if $toScreen
 		tab = "\t"*2*sublevel 
 		if obj.instance_of?(BEL::Language::Term)
@@ -147,17 +151,23 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil,
 		if sublevel == 0
 			if entity == :subject
 				unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
+					# Increment from nested statement
+					if recursiveStatement
+						increment(:relation)
+					end
 					relationTriple["cause"].refid = "r" + String($relationId)
 				else
 					relationTriple["cause"].refid = "a" + String($annotationId)
 				end
 				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(obj), relationTriple["cause"].refid
 			elsif entity == :object
+				# Increment from nested statement
+				if recursiveStatement
+					increment(:relation)
+				end
 				relationTriple["theme"].refid = "r" + String($annotationId)
-				
 				#substitute and strip remaining brackets
 				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub(String(obj), relationTriple["theme"].refid).tr(')(','')
-				
 			end
 		end
 		
@@ -169,17 +179,22 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil,
 				relation.infons["BEL (full)"] = String(obj)
 				relation.infons["BEL (relative)"] = String(obj).clone
 				document.relations << relation
-				incrRel()
+				increment(:relation)
 				# Recursive call
 				if obj.arguments.length > 1
 					obj.arguments.each do |arg|
 						prevannotId = $annotationId
+						prevrelId = $relationId
 						walkTerm(arg, sublevel + 1, passage, document)
 						node = SimpleBioC::Node.new(relation)
 						node.role = "member"
 						if arg.instance_of?(BEL::Language::Term)
 							unless arg.arguments.length == 1 and arg.arguments[0].instance_of?(BEL::Language::Parameter)
-								node.refid = "r" + String($relationId)
+								unless recursiveStatement
+									node.refid = "r" + String($relationId)
+								else
+									node.refid = "r" + String(prevrelId)
+								end
 							else
 								node.refid = "a" + String(prevannotId)
 							end
@@ -206,16 +221,17 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil,
 				annotation.locations << location
 				passage.annotations << annotation
 				annotation.id = "a" + String($annotationId)
-				$annotationId += 1
+				increment(:annotation)
 				annotation.infons["BEL (full)"] = String(obj)
 				annotation.infons["Entrez GeneID"] = nil # dummy value
 				annotation.infons[obj.arguments[0].ns] = obj.arguments[0].value
 				annotation.text = nil
-				
 			end
 		
 		elsif obj.instance_of?(BEL::Language::Statement)
-			walkStatement(obj, document)
+			# Increment: Nested statement is a relation
+			increment(:relation)
+			walkStatement(obj, document, passage, recursiveStatement=true)
 		else
 			annotation = SimpleBioC::Annotation.new(document)
 			location = SimpleBioC::Location.new(annotation)
@@ -224,7 +240,7 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil,
 			annotation.locations << location
 			passage.annotations << annotation
 			annotation.id = "a" + String($annotationId)
-			$annotationId += 1
+			increment(:annotation)
 			annotation.infons["BEL (full)"] = String(obj)
 			annotation.infons["Entrez GeneID"] = nil # dummy value
 			annotation.infons[obj.ns] = obj.value
@@ -237,10 +253,6 @@ if !$debug
 end
 
 ARGV.each do|infile|
-	if !$debug
-		document = SimpleBioC::Document.new(collection)
-		puts "<!--"
-	end
 	belfile = File.new(infile, "r")
 	
 	# parse; yield each parsed object to the block
@@ -254,14 +266,22 @@ ARGV.each do|infile|
 		end
 	end
 	
+	puts "<!--"
+	
 	statements.each do |obj|
+		
 		if $debug
 			collection = SimpleBioC::Collection.new()
-			document = SimpleBioC::Document.new(collection)
 		end
 		
-		document.id = "d" + String(rand(10000..1000000))
-		walkStatement(obj, document)
+		document = SimpleBioC::Document.new(collection)
+		passage = SimpleBioC::Passage.new(document)
+		passage.offset = nil
+		document.passages << passage
+		
+		document.id = "d" + String($documentId)
+		increment(:document)
+		walkStatement(obj, document, passage, false)
 			
 		collection.documents << document
 		
@@ -277,4 +297,5 @@ ARGV.each do|infile|
 		puts xml
 		puts "\n\n"
 	end
+	counterReset()
 end
