@@ -5,6 +5,7 @@ require 'colorize'
 $slice = 30
 $toScreen = false
 $debug = false
+$annotationTextLocationOffset = true
 
 $documentId = 1000
 $annotationId = 100
@@ -97,11 +98,13 @@ def walkStatement(obj, document, passage = nil, recursiveStatement = false)
 			tripleRelation["trigger"].refid = annotation.id
 			increment(:annotation)
 			annotation.infons["trigger"] = obj.relationship
-			annotation.text = nil
-			location = SimpleBioC::Location.new(annotation)
-			location.offset = nil
-			location.length = nil
-			annotation.locations << location
+			if $annotationTextLocationOffset
+				annotation.text = nil
+				location = SimpleBioC::Location.new(annotation)
+				location.offset = nil
+				location.length = nil
+				annotation.locations << location
+			end
 			passage.annotations << annotation
 		end
 	end
@@ -150,27 +153,22 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil,
 	elsif !obj.nil?
 		if sublevel == 0
 			if entity == :subject
-				unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
-					# Increment from nested statement
-					if recursiveStatement
-						increment(:relation)
-					end
-					relationTriple["cause"].refid = "r" + String($relationId)
-				else
-					relationTriple["cause"].refid = "a" + String($annotationId)
-				end
-				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(obj), relationTriple["cause"].refid
+				element = "cause"
 			elsif entity == :object
-				# Increment from nested statement
-				if recursiveStatement
-					increment(:relation)
-				end
-				relationTriple["theme"].refid = "r" + String($annotationId)
-				#substitute and strip remaining brackets
-				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub(String(obj), relationTriple["theme"].refid).tr(')(','')
+				element = "theme"
 			end
+				unless !obj.instance_of?(BEL::Language::Statement) and obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
+					relationTriple[element].refid = "r" + String($relationId)
+				else
+					relationTriple[element].refid = "a" + String($annotationId)
+				end
+			substitutionString = relation.infons["BEL (relative)"].sub String(obj), relationTriple[element].refid
+			if entity == :object
+				#strip remaining brackets
+				substitutionString = substitutionString.tr(')(','')
+			end
+			relation.infons["BEL (relative)"] = substitutionString
 		end
-		
 		if obj.instance_of?(BEL::Language::Term)
 			unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
 				relation = SimpleBioC::Relation.new(document)
@@ -201,50 +199,56 @@ def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil,
 						elsif arg.instance_of?(BEL::Language::Parameter)
 							node.refid = "a" + String(prevannotId)
 						end
+						puts arg, node.refid
 						relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
 						relation.nodes << node
 					end
 				else
 					arg = obj.arguments[0]
+					prevannotId = $annotationId
 					walkTerm(arg, sublevel + 1, passage, document)
 					node = SimpleBioC::Node.new(relation)
 					node.role = "self"
-					node.refid = "a" + String($annotationId)
+					node.refid = "a" + String(prevannotId)
 					relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
 					relation.nodes << node
 				end
 			else
 				annotation = SimpleBioC::Annotation.new(document)
-				location = SimpleBioC::Location.new(annotation)
-				location.offset = nil
-				location.length = nil
-				annotation.locations << location
+				if $annotationTextLocationOffset
+					location = SimpleBioC::Location.new(annotation)
+					location.offset = nil
+					location.length = nil
+					annotation.text = nil
+					annotation.locations << location
+				end
 				passage.annotations << annotation
 				annotation.id = "a" + String($annotationId)
 				increment(:annotation)
 				annotation.infons["BEL (full)"] = String(obj)
-				annotation.infons["Entrez GeneID"] = nil # dummy value
+				#annotation.infons["Entrez GeneID"] = nil
 				annotation.infons[obj.arguments[0].ns] = obj.arguments[0].value
-				annotation.text = nil
+				
 			end
 		
 		elsif obj.instance_of?(BEL::Language::Statement)
-			# Increment: Nested statement is a relation
-			increment(:relation)
 			walkStatement(obj, document, passage, recursiveStatement=true)
 		else
 			annotation = SimpleBioC::Annotation.new(document)
-			location = SimpleBioC::Location.new(annotation)
-			location.offset = nil
-			location.length = nil
-			annotation.locations << location
+			if $annotationTextLocationOffset
+				location = SimpleBioC::Location.new(annotation)
+				location.offset = nil
+				location.length = nil
+				annotation.locations << location
+				annotation.text = nil
+			end
 			passage.annotations << annotation
 			annotation.id = "a" + String($annotationId)
 			increment(:annotation)
 			annotation.infons["BEL (full)"] = String(obj)
-			annotation.infons["Entrez GeneID"] = nil # dummy value
+			#annotation.infons["Entrez GeneID"] = nil # dummy value
 			annotation.infons[obj.ns] = obj.value
-			annotation.text = nil
+			
 		end
 	end
 end
@@ -266,7 +270,7 @@ ARGV.each do|infile|
 		end
 	end
 	
-	puts "<!--"
+	puts "<!--\nBioC from #{statements.length} statements"
 	
 	statements.each do |obj|
 		
