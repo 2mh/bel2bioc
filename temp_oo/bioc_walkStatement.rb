@@ -4,6 +4,7 @@ require_relative 'bioc_walkTerm'
 
 $annotationTextLocationOffset = true
 
+# Initialize Id sequences
 $documentId = 1000
 $annotationId = 100
 $relationId = 100

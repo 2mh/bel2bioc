@@ -30,7 +30,7 @@ module Cli
 			obj.arguments.each do |subobj|
 				if subobj.instance_of?(BEL::Language::Term)
 					puts tab + "\t\tTerm Argument:".yellow + String(subobj)
-					# Recursive call
+					# Recursive call of walkTerm
 					walkTerm(subobj, sublevel + 1)
 				else
 					puts tab + "\t\tParameter Argument: ".green + String(subobj)
@@ -40,8 +40,8 @@ module Cli
 					puts tab + "\t\t\tSignature: ".green + String(subobj.signature)
 					if not subobj.ns.is_a? NilClass
 						begin
-						puts tab + "\t\t\tRDF: ".green + String(subobj.to_rdf).slice(0,$slice)
-						puts tab + "\t\t\tURI: ".green + String(subobj.to_uri)
+							puts tab + "\t\t\tRDF: ".green + String(subobj.to_rdf).slice(0,$slice)
+							puts tab + "\t\t\tURI: ".green + String(subobj.to_uri)
 						rescue NoMethodError
 						end
 					end
