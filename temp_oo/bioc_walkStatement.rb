@@ -35,7 +35,7 @@ module BioC
 			relation.nodes << causeNode
 			relation.nodes << themeNode
 			relation.nodes << triggerNode
-			document.relations << relation
+			passage.relations << relation
 			# Hash with references to the triple nodes
 			tripleRelation = {"cause" => causeNode, "theme" => themeNode, "trigger" => triggerNode}
 			

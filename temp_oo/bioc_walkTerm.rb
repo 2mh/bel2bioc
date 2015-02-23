@@ -62,7 +62,7 @@ module BioC
 			relation.infons["type"] = obj.fx.long_form
 			relation.infons["BEL (full)"] = String(obj)
 			relation.infons["BEL (relative)"] = String(obj).clone
-			document.relations << relation
+			passage.relations << relation
 			increment(:relation)
 			
 			# Handle n-ary terms
@@ -79,13 +79,7 @@ module BioC
 						
 						# Treat argument terms of length 1 and having a parameter as annotation
 						unless arg.arguments.length == 1 and arg.arguments[0].instance_of?(BEL::Language::Parameter)
-							
-							# Use stored relation id within nested statements
-							unless recursiveStatement
-								node.refid = "r" + String($relationId)
-							else
-								node.refid = "r" + String(prevrelId)
-							end
+							node.refid = "r" + String(prevrelId)
 						else
 							node.refid = "a" + String(prevannotId)
 						end
