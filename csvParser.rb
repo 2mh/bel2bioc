@@ -11,15 +11,20 @@ end
 
 csvTable = CSV.read(arg0, {col_sep:"\t", quote_char:"¬", headers:true})
 rowArray = []
+belArray = []
 
 csvTable.each do |row|
 	current = OpenStruct.new()
 	current.bel_id = row[0]
+	current.bel = row[1]
 	current.sentence = row[3]
 	rowArray << current
+	belArray << row[1]
 end
 
 rowArrayEnum = rowArray.each
+
+puts belArray
 
 require 'pry'; binding.pry
 
