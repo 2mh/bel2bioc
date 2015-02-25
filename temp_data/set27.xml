@@ -1,0 +1,1602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+BioC from 27 statementsp(HGNC:HGF) decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"cell death"))
+a(CHEBI:caffeine) decreases (bp(GOBP:"response to ionizing radiation") increases p(HGNC:CHEK2,pmod(P,T,68)))
+p(HGNC:KRT18) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death"))
+p(HGNC:KRT8) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death"))
+p(MGI:Il4) decreases (p(MGI:Ifng) increases a(CHEBI:"nitric oxide"))
+a(CHEBI:galangin) decreases (a(CHEBI:"2,3,7,8-tetrachlorodibenzodioxine") increases tscript(p(MGI:Ahr)))
+bp(GOBP:"MAPK cascade") decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"apoptotic process"))
+a(CHEBI:"trichostatin A") decreases (tscript(p(MGI:Msx3)) decreases r(MGI:Msx1))
+bp(GOBP:"response to hypoxia") increases (p(HGNC:TP53) increases bp(GOBP:"apoptotic process"))
+p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases path(MESHD:"Retinal Neovascularization"))
+p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases r(MGI:Vegfa))
+a(CHEBI:"Ro 31-8220") decreases (a(CHEBI:"phorbol 12,13-dibutanoate") increases p(MGI:Prkd1,pmod(P,S,916)))
+cat(p(HGNC:CASP3)) decreases (p(HGNC:PARP1) decreases cat(p(HGNC:DNASE1L3)))
+p(MGI:Nr1h2) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1))
+p(MGI:Nr1h3) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1))
+a(CHEBI:carboplatin) increases (p(MGI:Hif1a) decreases bp(GOBP:"apoptotic process"))
+p(MGI:Adipoq) decreases (p(MGI:Lep) decreases path(MESHD:"Diabetes Mellitus"))
+p(MGI:Adipoq) decreases (p(MGI:Apoe) decreases path(MESHD:Atherosclerosis))
+cat(p(MGI:Icmt)) increases (gtp(p(MGI:Kras)) increases path(MESHD:Neoplasms))
+cat(p(MGI:Icmt)) increases (kin(p(MGI:Braf)) increases path(MESHD:Neoplasms))
+a(CHEBI:acetylcysteine) decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2)))
+-->
+<!DOCTYPE collection SYSTEM "BioC.dtd">
+<collection>
+  <source/>
+  <date/>
+  <key/>
+  <document>
+    <id>d1000</id>
+    <passage>
+      <offset/>
+      <annotation id="a100">
+        <infon key="BEL (full)">p(HGNC:HGF)</infon>
+        <infon key="HGNC">HGF</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a101">
+        <infon key="BEL (full)">p(HGNC:FAS)</infon>
+        <infon key="HGNC">FAS</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a102">
+        <infon key="BEL (full)">bp(GOBP:"cell death")</infon>
+        <infon key="GOBP">cell death</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a103">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a104">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r100">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(HGNC:HGF) decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"cell death"))</infon>
+        <infon key="BEL (relative)">a100 decreases r101</infon>
+        <node refid="a100" role="cause"/>
+        <node refid="r101" role="theme"/>
+        <node refid="a104" role="trigger"/>
+      </relation>
+      <relation id="r101">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">cat(p(HGNC:FAS)) increases bp(GOBP:"cell death")</infon>
+        <infon key="BEL (relative)">r102 increases a102</infon>
+        <node refid="r102" role="cause"/>
+        <node refid="a102" role="theme"/>
+        <node refid="a103" role="trigger"/>
+      </relation>
+      <relation id="r102">
+        <infon key="type">catalyticActivity</infon>
+        <infon key="BEL (full)">cat(p(HGNC:FAS))</infon>
+        <infon key="BEL (relative)">cat(a101)</infon>
+        <node refid="a101" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1001</id>
+    <passage>
+      <offset/>
+      <annotation id="a105">
+        <infon key="BEL (full)">a(CHEBI:caffeine)</infon>
+        <infon key="CHEBI">caffeine</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a106">
+        <infon key="BEL (full)">bp(GOBP:"response to ionizing radiation")</infon>
+        <infon key="GOBP">response to ionizing radiation</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a107">
+        <infon key="BEL (full)">HGNC:CHEK2</infon>
+        <infon key="HGNC">CHEK2</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a108">
+        <infon key="BEL (full)">P</infon>
+        <infon key="">P</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a109">
+        <infon key="BEL (full)">T</infon>
+        <infon key="">T</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a110">
+        <infon key="BEL (full)">68</infon>
+        <infon key="">68</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a111">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a112">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r103">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:caffeine) decreases (bp(GOBP:"response to ionizing radiation") increases p(HGNC:CHEK2,pmod(P,T,68)))</infon>
+        <infon key="BEL (relative)">a105 decreases r104</infon>
+        <node refid="a105" role="cause"/>
+        <node refid="r104" role="theme"/>
+        <node refid="a112" role="trigger"/>
+      </relation>
+      <relation id="r104">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">bp(GOBP:"response to ionizing radiation") increases p(HGNC:CHEK2,pmod(P,T,68))</infon>
+        <infon key="BEL (relative)">a106 increases r105</infon>
+        <node refid="a106" role="cause"/>
+        <node refid="r105" role="theme"/>
+        <node refid="a111" role="trigger"/>
+      </relation>
+      <relation id="r105">
+        <infon key="type">proteinAbundance</infon>
+        <infon key="BEL (full)">p(HGNC:CHEK2,pmod(P,T,68))</infon>
+        <infon key="BEL (relative)">p(a107,r106)</infon>
+        <node refid="a107" role="member"/>
+        <node refid="r106" role="member"/>
+      </relation>
+      <relation id="r106">
+        <infon key="type">proteinModification</infon>
+        <infon key="BEL (full)">pmod(P,T,68)</infon>
+        <infon key="BEL (relative)">pmod(a108,a109,a110)</infon>
+        <node refid="a108" role="member"/>
+        <node refid="a109" role="member"/>
+        <node refid="a110" role="member"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1002</id>
+    <passage>
+      <offset/>
+      <annotation id="a113">
+        <infon key="BEL (full)">p(HGNC:KRT18)</infon>
+        <infon key="HGNC">KRT18</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a114">
+        <infon key="BEL (full)">p(HGNC:TNF)</infon>
+        <infon key="HGNC">TNF</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a115">
+        <infon key="BEL (full)">bp(GOBP:"cell death")</infon>
+        <infon key="GOBP">cell death</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a116">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a117">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r107">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(HGNC:KRT18) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death"))</infon>
+        <infon key="BEL (relative)">a113 decreases r108</infon>
+        <node refid="a113" role="cause"/>
+        <node refid="r108" role="theme"/>
+        <node refid="a117" role="trigger"/>
+      </relation>
+      <relation id="r108">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(HGNC:TNF) increases bp(GOBP:"cell death")</infon>
+        <infon key="BEL (relative)">a114 increases a115</infon>
+        <node refid="a114" role="cause"/>
+        <node refid="a115" role="theme"/>
+        <node refid="a116" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1003</id>
+    <passage>
+      <offset/>
+      <annotation id="a118">
+        <infon key="BEL (full)">p(HGNC:KRT8)</infon>
+        <infon key="HGNC">KRT8</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a119">
+        <infon key="BEL (full)">p(HGNC:TNF)</infon>
+        <infon key="HGNC">TNF</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a120">
+        <infon key="BEL (full)">bp(GOBP:"cell death")</infon>
+        <infon key="GOBP">cell death</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a121">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a122">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r109">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(HGNC:KRT8) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death"))</infon>
+        <infon key="BEL (relative)">a118 decreases r110</infon>
+        <node refid="a118" role="cause"/>
+        <node refid="r110" role="theme"/>
+        <node refid="a122" role="trigger"/>
+      </relation>
+      <relation id="r110">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(HGNC:TNF) increases bp(GOBP:"cell death")</infon>
+        <infon key="BEL (relative)">a119 increases a120</infon>
+        <node refid="a119" role="cause"/>
+        <node refid="a120" role="theme"/>
+        <node refid="a121" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1004</id>
+    <passage>
+      <offset/>
+      <annotation id="a123">
+        <infon key="BEL (full)">p(MGI:Il4)</infon>
+        <infon key="MGI">Il4</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a124">
+        <infon key="BEL (full)">p(MGI:Ifng)</infon>
+        <infon key="MGI">Ifng</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a125">
+        <infon key="BEL (full)">a(CHEBI:"nitric oxide")</infon>
+        <infon key="CHEBI">nitric oxide</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a126">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a127">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r111">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(MGI:Il4) decreases (p(MGI:Ifng) increases a(CHEBI:"nitric oxide"))</infon>
+        <infon key="BEL (relative)">a123 decreases r112</infon>
+        <node refid="a123" role="cause"/>
+        <node refid="r112" role="theme"/>
+        <node refid="a127" role="trigger"/>
+      </relation>
+      <relation id="r112">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(MGI:Ifng) increases a(CHEBI:"nitric oxide")</infon>
+        <infon key="BEL (relative)">a124 increases a125</infon>
+        <node refid="a124" role="cause"/>
+        <node refid="a125" role="theme"/>
+        <node refid="a126" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1005</id>
+    <passage>
+      <offset/>
+      <annotation id="a128">
+        <infon key="BEL (full)">a(CHEBI:galangin)</infon>
+        <infon key="CHEBI">galangin</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a129">
+        <infon key="BEL (full)">a(CHEBI:"2,3,7,8-tetrachlorodibenzodioxine")</infon>
+        <infon key="CHEBI">2,3,7,8-tetrachlorodibenzodioxine</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a130">
+        <infon key="BEL (full)">p(MGI:Ahr)</infon>
+        <infon key="MGI">Ahr</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a131">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a132">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r113">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:galangin) decreases (a(CHEBI:"2,3,7,8-tetrachlorodibenzodioxine") increases tscript(p(MGI:Ahr)))</infon>
+        <infon key="BEL (relative)">a128 decreases r114</infon>
+        <node refid="a128" role="cause"/>
+        <node refid="r114" role="theme"/>
+        <node refid="a132" role="trigger"/>
+      </relation>
+      <relation id="r114">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">a(CHEBI:"2,3,7,8-tetrachlorodibenzodioxine") increases tscript(p(MGI:Ahr))</infon>
+        <infon key="BEL (relative)">a129 increases r115</infon>
+        <node refid="a129" role="cause"/>
+        <node refid="r115" role="theme"/>
+        <node refid="a131" role="trigger"/>
+      </relation>
+      <relation id="r115">
+        <infon key="type">transcriptionalActivity</infon>
+        <infon key="BEL (full)">tscript(p(MGI:Ahr))</infon>
+        <infon key="BEL (relative)">tscript(a130)</infon>
+        <node refid="a130" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1006</id>
+    <passage>
+      <offset/>
+      <annotation id="a133">
+        <infon key="BEL (full)">bp(GOBP:"MAPK cascade")</infon>
+        <infon key="GOBP">MAPK cascade</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a134">
+        <infon key="BEL (full)">p(HGNC:FAS)</infon>
+        <infon key="HGNC">FAS</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a135">
+        <infon key="BEL (full)">bp(GOBP:"apoptotic process")</infon>
+        <infon key="GOBP">apoptotic process</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a136">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a137">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r116">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">bp(GOBP:"MAPK cascade") decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"apoptotic process"))</infon>
+        <infon key="BEL (relative)">a133 decreases r117</infon>
+        <node refid="a133" role="cause"/>
+        <node refid="r117" role="theme"/>
+        <node refid="a137" role="trigger"/>
+      </relation>
+      <relation id="r117">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">cat(p(HGNC:FAS)) increases bp(GOBP:"apoptotic process")</infon>
+        <infon key="BEL (relative)">r118 increases a135</infon>
+        <node refid="r118" role="cause"/>
+        <node refid="a135" role="theme"/>
+        <node refid="a136" role="trigger"/>
+      </relation>
+      <relation id="r118">
+        <infon key="type">catalyticActivity</infon>
+        <infon key="BEL (full)">cat(p(HGNC:FAS))</infon>
+        <infon key="BEL (relative)">cat(a134)</infon>
+        <node refid="a134" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1007</id>
+    <passage>
+      <offset/>
+      <annotation id="a138">
+        <infon key="BEL (full)">a(CHEBI:"trichostatin A")</infon>
+        <infon key="CHEBI">trichostatin A</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a139">
+        <infon key="BEL (full)">p(MGI:Msx3)</infon>
+        <infon key="MGI">Msx3</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a140">
+        <infon key="BEL (full)">r(MGI:Msx1)</infon>
+        <infon key="MGI">Msx1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a141">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a142">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r119">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"trichostatin A") decreases (tscript(p(MGI:Msx3)) decreases r(MGI:Msx1))</infon>
+        <infon key="BEL (relative)">a138 decreases r120</infon>
+        <node refid="a138" role="cause"/>
+        <node refid="r120" role="theme"/>
+        <node refid="a142" role="trigger"/>
+      </relation>
+      <relation id="r120">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">tscript(p(MGI:Msx3)) decreases r(MGI:Msx1)</infon>
+        <infon key="BEL (relative)">r121 decreases a140</infon>
+        <node refid="r121" role="cause"/>
+        <node refid="a140" role="theme"/>
+        <node refid="a141" role="trigger"/>
+      </relation>
+      <relation id="r121">
+        <infon key="type">transcriptionalActivity</infon>
+        <infon key="BEL (full)">tscript(p(MGI:Msx3))</infon>
+        <infon key="BEL (relative)">tscript(a139)</infon>
+        <node refid="a139" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1008</id>
+    <passage>
+      <offset/>
+      <annotation id="a143">
+        <infon key="BEL (full)">bp(GOBP:"response to hypoxia")</infon>
+        <infon key="GOBP">response to hypoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a144">
+        <infon key="BEL (full)">p(HGNC:TP53)</infon>
+        <infon key="HGNC">TP53</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a145">
+        <infon key="BEL (full)">bp(GOBP:"apoptotic process")</infon>
+        <infon key="GOBP">apoptotic process</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a146">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a147">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r122">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">bp(GOBP:"response to hypoxia") increases (p(HGNC:TP53) increases bp(GOBP:"apoptotic process"))</infon>
+        <infon key="BEL (relative)">a143 increases r123</infon>
+        <node refid="a143" role="cause"/>
+        <node refid="r123" role="theme"/>
+        <node refid="a147" role="trigger"/>
+      </relation>
+      <relation id="r123">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(HGNC:TP53) increases bp(GOBP:"apoptotic process")</infon>
+        <infon key="BEL (relative)">a144 increases a145</infon>
+        <node refid="a144" role="cause"/>
+        <node refid="a145" role="theme"/>
+        <node refid="a146" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1009</id>
+    <passage>
+      <offset/>
+      <annotation id="a148">
+        <infon key="BEL (full)">p(MGI:Abl1)</infon>
+        <infon key="MGI">Abl1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a149">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a150">
+        <infon key="BEL (full)">path(MESHD:"Retinal Neovascularization")</infon>
+        <infon key="MESHD">Retinal Neovascularization</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a151">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a152">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r124">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases path(MESHD:"Retinal Neovascularization"))</infon>
+        <infon key="BEL (relative)">a148 increases r125</infon>
+        <node refid="a148" role="cause"/>
+        <node refid="r125" role="theme"/>
+        <node refid="a152" role="trigger"/>
+      </relation>
+      <relation id="r125">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases path(MESHD:"Retinal Neovascularization")</infon>
+        <infon key="BEL (relative)">a149 increases a150</infon>
+        <node refid="a149" role="cause"/>
+        <node refid="a150" role="theme"/>
+        <node refid="a151" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1010</id>
+    <passage>
+      <offset/>
+      <annotation id="a153">
+        <infon key="BEL (full)">p(MGI:Abl1)</infon>
+        <infon key="MGI">Abl1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a154">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a155">
+        <infon key="BEL (full)">r(MGI:Vegfa)</infon>
+        <infon key="MGI">Vegfa</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a156">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a157">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r126">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases r(MGI:Vegfa))</infon>
+        <infon key="BEL (relative)">a153 increases r127</infon>
+        <node refid="a153" role="cause"/>
+        <node refid="r127" role="theme"/>
+        <node refid="a157" role="trigger"/>
+      </relation>
+      <relation id="r127">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases r(MGI:Vegfa)</infon>
+        <infon key="BEL (relative)">a154 increases a155</infon>
+        <node refid="a154" role="cause"/>
+        <node refid="a155" role="theme"/>
+        <node refid="a156" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1011</id>
+    <passage>
+      <offset/>
+      <annotation id="a158">
+        <infon key="BEL (full)">a(CHEBI:"Ro 31-8220")</infon>
+        <infon key="CHEBI">Ro 31-8220</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a159">
+        <infon key="BEL (full)">a(CHEBI:"phorbol 12,13-dibutanoate")</infon>
+        <infon key="CHEBI">phorbol 12,13-dibutanoate</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a160">
+        <infon key="BEL (full)">MGI:Prkd1</infon>
+        <infon key="MGI">Prkd1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a161">
+        <infon key="BEL (full)">P</infon>
+        <infon key="">P</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a162">
+        <infon key="BEL (full)">S</infon>
+        <infon key="">S</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a163">
+        <infon key="BEL (full)">916</infon>
+        <infon key="">916</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a164">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a165">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r128">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"Ro 31-8220") decreases (a(CHEBI:"phorbol 12,13-dibutanoate") increases p(MGI:Prkd1,pmod(P,S,916)))</infon>
+        <infon key="BEL (relative)">a158 decreases r129</infon>
+        <node refid="a158" role="cause"/>
+        <node refid="r129" role="theme"/>
+        <node refid="a165" role="trigger"/>
+      </relation>
+      <relation id="r129">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">a(CHEBI:"phorbol 12,13-dibutanoate") increases p(MGI:Prkd1,pmod(P,S,916))</infon>
+        <infon key="BEL (relative)">a159 increases r130</infon>
+        <node refid="a159" role="cause"/>
+        <node refid="r130" role="theme"/>
+        <node refid="a164" role="trigger"/>
+      </relation>
+      <relation id="r130">
+        <infon key="type">proteinAbundance</infon>
+        <infon key="BEL (full)">p(MGI:Prkd1,pmod(P,S,916))</infon>
+        <infon key="BEL (relative)">p(a160,r131)</infon>
+        <node refid="a160" role="member"/>
+        <node refid="r131" role="member"/>
+      </relation>
+      <relation id="r131">
+        <infon key="type">proteinModification</infon>
+        <infon key="BEL (full)">pmod(P,S,916)</infon>
+        <infon key="BEL (relative)">pmod(a161,a162,a163)</infon>
+        <node refid="a161" role="member"/>
+        <node refid="a162" role="member"/>
+        <node refid="a163" role="member"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1012</id>
+    <passage>
+      <offset/>
+      <annotation id="a166">
+        <infon key="BEL (full)">p(HGNC:CASP3)</infon>
+        <infon key="HGNC">CASP3</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a167">
+        <infon key="BEL (full)">p(HGNC:PARP1)</infon>
+        <infon key="HGNC">PARP1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a168">
+        <infon key="BEL (full)">p(HGNC:DNASE1L3)</infon>
+        <infon key="HGNC">DNASE1L3</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a169">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a170">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r132">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">cat(p(HGNC:CASP3)) decreases (p(HGNC:PARP1) decreases cat(p(HGNC:DNASE1L3)))</infon>
+        <infon key="BEL (relative)">r133 decreases r134</infon>
+        <node refid="r133" role="cause"/>
+        <node refid="r134" role="theme"/>
+        <node refid="a170" role="trigger"/>
+      </relation>
+      <relation id="r133">
+        <infon key="type">catalyticActivity</infon>
+        <infon key="BEL (full)">cat(p(HGNC:CASP3))</infon>
+        <infon key="BEL (relative)">cat(a166)</infon>
+        <node refid="a166" role="self"/>
+      </relation>
+      <relation id="r134">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(HGNC:PARP1) decreases cat(p(HGNC:DNASE1L3))</infon>
+        <infon key="BEL (relative)">a167 decreases r135</infon>
+        <node refid="a167" role="cause"/>
+        <node refid="r135" role="theme"/>
+        <node refid="a169" role="trigger"/>
+      </relation>
+      <relation id="r135">
+        <infon key="type">catalyticActivity</infon>
+        <infon key="BEL (full)">cat(p(HGNC:DNASE1L3))</infon>
+        <infon key="BEL (relative)">cat(a168)</infon>
+        <node refid="a168" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1013</id>
+    <passage>
+      <offset/>
+      <annotation id="a171">
+        <infon key="BEL (full)">p(MGI:Nr1h2)</infon>
+        <infon key="MGI">Nr1h2</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a172">
+        <infon key="BEL (full)">a(CHEBI:cholesterol)</infon>
+        <infon key="CHEBI">cholesterol</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a173">
+        <infon key="BEL (full)">r(MGI:Cyp7a1)</infon>
+        <infon key="MGI">Cyp7a1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a174">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a175">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r136">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(MGI:Nr1h2) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1))</infon>
+        <infon key="BEL (relative)">a171 increases r137</infon>
+        <node refid="a171" role="cause"/>
+        <node refid="r137" role="theme"/>
+        <node refid="a175" role="trigger"/>
+      </relation>
+      <relation id="r137">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">a(CHEBI:cholesterol) increases r(MGI:Cyp7a1)</infon>
+        <infon key="BEL (relative)">a172 increases a173</infon>
+        <node refid="a172" role="cause"/>
+        <node refid="a173" role="theme"/>
+        <node refid="a174" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1014</id>
+    <passage>
+      <offset/>
+      <annotation id="a176">
+        <infon key="BEL (full)">p(MGI:Nr1h3)</infon>
+        <infon key="MGI">Nr1h3</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a177">
+        <infon key="BEL (full)">a(CHEBI:cholesterol)</infon>
+        <infon key="CHEBI">cholesterol</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a178">
+        <infon key="BEL (full)">r(MGI:Cyp7a1)</infon>
+        <infon key="MGI">Cyp7a1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a179">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a180">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r138">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">p(MGI:Nr1h3) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1))</infon>
+        <infon key="BEL (relative)">a176 increases r139</infon>
+        <node refid="a176" role="cause"/>
+        <node refid="r139" role="theme"/>
+        <node refid="a180" role="trigger"/>
+      </relation>
+      <relation id="r139">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">a(CHEBI:cholesterol) increases r(MGI:Cyp7a1)</infon>
+        <infon key="BEL (relative)">a177 increases a178</infon>
+        <node refid="a177" role="cause"/>
+        <node refid="a178" role="theme"/>
+        <node refid="a179" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1015</id>
+    <passage>
+      <offset/>
+      <annotation id="a181">
+        <infon key="BEL (full)">a(CHEBI:carboplatin)</infon>
+        <infon key="CHEBI">carboplatin</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a182">
+        <infon key="BEL (full)">p(MGI:Hif1a)</infon>
+        <infon key="MGI">Hif1a</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a183">
+        <infon key="BEL (full)">bp(GOBP:"apoptotic process")</infon>
+        <infon key="GOBP">apoptotic process</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a184">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a185">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r140">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">a(CHEBI:carboplatin) increases (p(MGI:Hif1a) decreases bp(GOBP:"apoptotic process"))</infon>
+        <infon key="BEL (relative)">a181 increases r141</infon>
+        <node refid="a181" role="cause"/>
+        <node refid="r141" role="theme"/>
+        <node refid="a185" role="trigger"/>
+      </relation>
+      <relation id="r141">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(MGI:Hif1a) decreases bp(GOBP:"apoptotic process")</infon>
+        <infon key="BEL (relative)">a182 decreases a183</infon>
+        <node refid="a182" role="cause"/>
+        <node refid="a183" role="theme"/>
+        <node refid="a184" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1016</id>
+    <passage>
+      <offset/>
+      <annotation id="a186">
+        <infon key="BEL (full)">p(MGI:Adipoq)</infon>
+        <infon key="MGI">Adipoq</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a187">
+        <infon key="BEL (full)">p(MGI:Lep)</infon>
+        <infon key="MGI">Lep</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a188">
+        <infon key="BEL (full)">path(MESHD:"Diabetes Mellitus")</infon>
+        <infon key="MESHD">Diabetes Mellitus</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a189">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a190">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r142">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(MGI:Adipoq) decreases (p(MGI:Lep) decreases path(MESHD:"Diabetes Mellitus"))</infon>
+        <infon key="BEL (relative)">a186 decreases r143</infon>
+        <node refid="a186" role="cause"/>
+        <node refid="r143" role="theme"/>
+        <node refid="a190" role="trigger"/>
+      </relation>
+      <relation id="r143">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(MGI:Lep) decreases path(MESHD:"Diabetes Mellitus")</infon>
+        <infon key="BEL (relative)">a187 decreases a188</infon>
+        <node refid="a187" role="cause"/>
+        <node refid="a188" role="theme"/>
+        <node refid="a189" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1017</id>
+    <passage>
+      <offset/>
+      <annotation id="a191">
+        <infon key="BEL (full)">p(MGI:Adipoq)</infon>
+        <infon key="MGI">Adipoq</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a192">
+        <infon key="BEL (full)">p(MGI:Apoe)</infon>
+        <infon key="MGI">Apoe</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a193">
+        <infon key="BEL (full)">path(MESHD:Atherosclerosis)</infon>
+        <infon key="MESHD">Atherosclerosis</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a194">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a195">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r144">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(MGI:Adipoq) decreases (p(MGI:Apoe) decreases path(MESHD:Atherosclerosis))</infon>
+        <infon key="BEL (relative)">a191 decreases r145</infon>
+        <node refid="a191" role="cause"/>
+        <node refid="r145" role="theme"/>
+        <node refid="a195" role="trigger"/>
+      </relation>
+      <relation id="r145">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">p(MGI:Apoe) decreases path(MESHD:Atherosclerosis)</infon>
+        <infon key="BEL (relative)">a192 decreases a193</infon>
+        <node refid="a192" role="cause"/>
+        <node refid="a193" role="theme"/>
+        <node refid="a194" role="trigger"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1018</id>
+    <passage>
+      <offset/>
+      <annotation id="a196">
+        <infon key="BEL (full)">p(MGI:Icmt)</infon>
+        <infon key="MGI">Icmt</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a197">
+        <infon key="BEL (full)">p(MGI:Kras)</infon>
+        <infon key="MGI">Kras</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a198">
+        <infon key="BEL (full)">path(MESHD:Neoplasms)</infon>
+        <infon key="MESHD">Neoplasms</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a199">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a200">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r146">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">cat(p(MGI:Icmt)) increases (gtp(p(MGI:Kras)) increases path(MESHD:Neoplasms))</infon>
+        <infon key="BEL (relative)">r147 increases r148</infon>
+        <node refid="r147" role="cause"/>
+        <node refid="r148" role="theme"/>
+        <node refid="a200" role="trigger"/>
+      </relation>
+      <relation id="r147">
+        <infon key="type">catalyticActivity</infon>
+        <infon key="BEL (full)">cat(p(MGI:Icmt))</infon>
+        <infon key="BEL (relative)">cat(a196)</infon>
+        <node refid="a196" role="self"/>
+      </relation>
+      <relation id="r148">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">gtp(p(MGI:Kras)) increases path(MESHD:Neoplasms)</infon>
+        <infon key="BEL (relative)">r149 increases a198</infon>
+        <node refid="r149" role="cause"/>
+        <node refid="a198" role="theme"/>
+        <node refid="a199" role="trigger"/>
+      </relation>
+      <relation id="r149">
+        <infon key="type">gtpBoundActivity</infon>
+        <infon key="BEL (full)">gtp(p(MGI:Kras))</infon>
+        <infon key="BEL (relative)">gtp(a197)</infon>
+        <node refid="a197" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1019</id>
+    <passage>
+      <offset/>
+      <annotation id="a201">
+        <infon key="BEL (full)">p(MGI:Icmt)</infon>
+        <infon key="MGI">Icmt</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a202">
+        <infon key="BEL (full)">p(MGI:Braf)</infon>
+        <infon key="MGI">Braf</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a203">
+        <infon key="BEL (full)">path(MESHD:Neoplasms)</infon>
+        <infon key="MESHD">Neoplasms</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a204">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a205">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r150">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">cat(p(MGI:Icmt)) increases (kin(p(MGI:Braf)) increases path(MESHD:Neoplasms))</infon>
+        <infon key="BEL (relative)">r151 increases r152</infon>
+        <node refid="r151" role="cause"/>
+        <node refid="r152" role="theme"/>
+        <node refid="a205" role="trigger"/>
+      </relation>
+      <relation id="r151">
+        <infon key="type">catalyticActivity</infon>
+        <infon key="BEL (full)">cat(p(MGI:Icmt))</infon>
+        <infon key="BEL (relative)">cat(a201)</infon>
+        <node refid="a201" role="self"/>
+      </relation>
+      <relation id="r152">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">kin(p(MGI:Braf)) increases path(MESHD:Neoplasms)</infon>
+        <infon key="BEL (relative)">r153 increases a203</infon>
+        <node refid="r153" role="cause"/>
+        <node refid="a203" role="theme"/>
+        <node refid="a204" role="trigger"/>
+      </relation>
+      <relation id="r153">
+        <infon key="type">kinaseActivity</infon>
+        <infon key="BEL (full)">kin(p(MGI:Braf))</infon>
+        <infon key="BEL (relative)">kin(a202)</infon>
+        <node refid="a202" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1020</id>
+    <passage>
+      <offset/>
+      <annotation id="a206">
+        <infon key="BEL (full)">a(CHEBI:acetylcysteine)</infon>
+        <infon key="CHEBI">acetylcysteine</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a207">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a208">
+        <infon key="BEL (full)">p(MGI:Mapk3)</infon>
+        <infon key="MGI">Mapk3</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a209">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a210">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r154">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:acetylcysteine) decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))</infon>
+        <infon key="BEL (relative)">a206 decreases r155</infon>
+        <node refid="a206" role="cause"/>
+        <node refid="r155" role="theme"/>
+        <node refid="a210" role="trigger"/>
+      </relation>
+      <relation id="r155">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))</infon>
+        <infon key="BEL (relative)">a207 increases r156</infon>
+        <node refid="a207" role="cause"/>
+        <node refid="r156" role="theme"/>
+        <node refid="a209" role="trigger"/>
+      </relation>
+      <relation id="r156">
+        <infon key="type">kinaseActivity</infon>
+        <infon key="BEL (full)">kin(p(MGI:Mapk3))</infon>
+        <infon key="BEL (relative)">kin(a208)</infon>
+        <node refid="a208" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1021</id>
+    <passage>
+      <offset/>
+      <annotation id="a211">
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
+        <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a212">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a213">
+        <infon key="BEL (full)">p(MGI:Mapk1)</infon>
+        <infon key="MGI">Mapk1</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a214">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a215">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r157">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1)))</infon>
+        <infon key="BEL (relative)">a211 decreases r158</infon>
+        <node refid="a211" role="cause"/>
+        <node refid="r158" role="theme"/>
+        <node refid="a215" role="trigger"/>
+      </relation>
+      <relation id="r158">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1))</infon>
+        <infon key="BEL (relative)">a212 increases r159</infon>
+        <node refid="a212" role="cause"/>
+        <node refid="r159" role="theme"/>
+        <node refid="a214" role="trigger"/>
+      </relation>
+      <relation id="r159">
+        <infon key="type">kinaseActivity</infon>
+        <infon key="BEL (full)">kin(p(MGI:Mapk1))</infon>
+        <infon key="BEL (relative)">kin(a213)</infon>
+        <node refid="a213" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1022</id>
+    <passage>
+      <offset/>
+      <annotation id="a216">
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
+        <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a217">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a218">
+        <infon key="BEL (full)">p(MGI:Mapk3)</infon>
+        <infon key="MGI">Mapk3</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a219">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a220">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r160">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))</infon>
+        <infon key="BEL (relative)">a216 decreases r161</infon>
+        <node refid="a216" role="cause"/>
+        <node refid="r161" role="theme"/>
+        <node refid="a220" role="trigger"/>
+      </relation>
+      <relation id="r161">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))</infon>
+        <infon key="BEL (relative)">a217 increases r162</infon>
+        <node refid="a217" role="cause"/>
+        <node refid="r162" role="theme"/>
+        <node refid="a219" role="trigger"/>
+      </relation>
+      <relation id="r162">
+        <infon key="type">kinaseActivity</infon>
+        <infon key="BEL (full)">kin(p(MGI:Mapk3))</infon>
+        <infon key="BEL (relative)">kin(a218)</infon>
+        <node refid="a218" role="self"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1023</id>
+    <passage>
+      <offset/>
+      <annotation id="a221">
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
+        <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a222">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a223">
+        <infon key="BEL (full)">MGI:Nfe2l2</infon>
+        <infon key="MGI">Nfe2l2</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a224">
+        <infon key="BEL (full)">P</infon>
+        <infon key="">P</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a225">
+        <infon key="BEL (full)">S</infon>
+        <infon key="">S</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a226">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a227">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r163">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S)))</infon>
+        <infon key="BEL (relative)">a221 decreases r164</infon>
+        <node refid="a221" role="cause"/>
+        <node refid="r164" role="theme"/>
+        <node refid="a227" role="trigger"/>
+      </relation>
+      <relation id="r164">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S))</infon>
+        <infon key="BEL (relative)">a222 increases r165</infon>
+        <node refid="a222" role="cause"/>
+        <node refid="r165" role="theme"/>
+        <node refid="a226" role="trigger"/>
+      </relation>
+      <relation id="r165">
+        <infon key="type">proteinAbundance</infon>
+        <infon key="BEL (full)">p(MGI:Nfe2l2,pmod(P,S))</infon>
+        <infon key="BEL (relative)">p(a223,r166)</infon>
+        <node refid="a223" role="member"/>
+        <node refid="r166" role="member"/>
+      </relation>
+      <relation id="r166">
+        <infon key="type">proteinModification</infon>
+        <infon key="BEL (full)">pmod(P,S)</infon>
+        <infon key="BEL (relative)">pmod(a224,a225)</infon>
+        <node refid="a224" role="member"/>
+        <node refid="a225" role="member"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1024</id>
+    <passage>
+      <offset/>
+      <annotation id="a228">
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
+        <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a229">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a230">
+        <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
+        <infon key="MGI">Nfe2l2</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a231">
+        <infon key="BEL (full)">GOCCID:0005737</infon>
+        <infon key="GOCCID">0005737</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a232">
+        <infon key="BEL (full)">GOCCID:0005634</infon>
+        <infon key="GOCCID">0005634</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a233">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a234">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r167">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))</infon>
+        <infon key="BEL (relative)">a228 decreases r168</infon>
+        <node refid="a228" role="cause"/>
+        <node refid="r168" role="theme"/>
+        <node refid="a234" role="trigger"/>
+      </relation>
+      <relation id="r168">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">a229 increases r169</infon>
+        <node refid="a229" role="cause"/>
+        <node refid="r169" role="theme"/>
+        <node refid="a233" role="trigger"/>
+      </relation>
+      <relation id="r169">
+        <infon key="type">translocation</infon>
+        <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">tloc(a230,a231,a232)</infon>
+        <node refid="a230" role="member"/>
+        <node refid="a231" role="member"/>
+        <node refid="a232" role="member"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1025</id>
+    <passage>
+      <offset/>
+      <annotation id="a235">
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
+        <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a236">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a237">
+        <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
+        <infon key="MGI">Nfe2l2</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a238">
+        <infon key="BEL (full)">GOCCID:0005737</infon>
+        <infon key="GOCCID">0005737</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a239">
+        <infon key="BEL (full)">GOCCID:0005634</infon>
+        <infon key="GOCCID">0005634</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a240">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a241">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r170">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))</infon>
+        <infon key="BEL (relative)">a235 decreases r171</infon>
+        <node refid="a235" role="cause"/>
+        <node refid="r171" role="theme"/>
+        <node refid="a241" role="trigger"/>
+      </relation>
+      <relation id="r171">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">a236 increases r172</infon>
+        <node refid="a236" role="cause"/>
+        <node refid="r172" role="theme"/>
+        <node refid="a240" role="trigger"/>
+      </relation>
+      <relation id="r172">
+        <infon key="type">translocation</infon>
+        <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">tloc(a237,a238,a239)</infon>
+        <node refid="a237" role="member"/>
+        <node refid="a238" role="member"/>
+        <node refid="a239" role="member"/>
+      </relation>
+    </passage>
+  </document>
+  <document>
+    <id>d1026</id>
+    <passage>
+      <offset/>
+      <annotation id="a242">
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
+        <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a243">
+        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
+        <infon key="MESHD">Hyperoxia</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a244">
+        <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
+        <infon key="MGI">Nfe2l2</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a245">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a246">
+        <infon key="trigger">decreases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <relation id="r173">
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2)))</infon>
+        <infon key="BEL (relative)">a242 decreases r174</infon>
+        <node refid="a242" role="cause"/>
+        <node refid="r174" role="theme"/>
+        <node refid="a246" role="trigger"/>
+      </relation>
+      <relation id="r174">
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2))</infon>
+        <infon key="BEL (relative)">a243 increases r175</infon>
+        <node refid="a243" role="cause"/>
+        <node refid="r175" role="theme"/>
+        <node refid="a245" role="trigger"/>
+      </relation>
+      <relation id="r175">
+        <infon key="type">transcriptionalActivity</infon>
+        <infon key="BEL (full)">tscript(p(MGI:Nfe2l2))</infon>
+        <infon key="BEL (relative)">tscript(a244)</infon>
+        <node refid="a244" role="self"/>
+      </relation>
+    </passage>
+  </document>
+</collection>

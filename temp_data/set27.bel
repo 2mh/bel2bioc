@@ -1,0 +1,76 @@
+##################################################################################
+# Document Properties Section
+
+SET DOCUMENT Name = "BEL Framework Small Corpus Document"
+SET DOCUMENT Description = "Approximately 2000 hand curated statements drawn from 57 PubMeds."
+SET DOCUMENT Version = 20131211
+SET DOCUMENT Copyright = "Copyright (c) 2011-2012, Selventa. All Rights Reserved."
+SET DOCUMENT Authors = Selventa
+SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
+SET DOCUMENT ContactInfo = "support@belframework.org"
+
+##################################################################################
+# Definitions Section
+
+DEFINE NAMESPACE CHEBI AS URL "http://resource.belframework.org/belframework/20131211/namespace/chebi.belns"
+DEFINE NAMESPACE CHEBIID AS URL "http://resource.belframework.org/belframework/20131211/namespace/chebi-ids.belns"
+DEFINE NAMESPACE EGID AS URL "http://resource.belframework.org/belframework/20131211/namespace/entrez-gene-ids.belns"
+DEFINE NAMESPACE GOBP AS URL "http://resource.belframework.org/belframework/20131211/namespace/go-biological-process.belns"
+DEFINE NAMESPACE HGNC AS URL "http://resource.belframework.org/belframework/20131211/namespace/hgnc-human-genes.belns"
+DEFINE NAMESPACE MESHCS AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-cellular-structures.belns"
+DEFINE NAMESPACE MESHD AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-diseases.belns"
+DEFINE NAMESPACE MESHPP AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-processes.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20131211/namespace/mgi-mouse-genes.belns"
+DEFINE NAMESPACE RGD AS URL "http://resource.belframework.org/belframework/20131211/namespace/rgd-rat-genes.belns"
+DEFINE NAMESPACE SCHEM AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-legacy-chemicals.belns"
+DEFINE NAMESPACE SCOMP AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-named-complexes.belns"
+DEFINE NAMESPACE SDIS AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-legacy-diseases.belns"
+DEFINE NAMESPACE SFAM AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-protein-families.belns"
+DEFINE NAMESPACE SPAC AS URL "http://resource.belframework.org/belframework/20131211/namespace/swissprot-ids.belns"
+
+# Dummy definitions
+DEFINE NAMESPACE PFH AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+DEFINE NAMESPACE NCH AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+DEFINE NAMESPACE GOCCID AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+
+DEFINE ANNOTATION Anatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/anatomy.belanno"
+DEFINE ANNOTATION Cell AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell.belanno"
+DEFINE ANNOTATION CellLine AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-line.belanno"
+DEFINE ANNOTATION CellStructure AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-structure.belanno"
+DEFINE ANNOTATION Disease AS URL "http://resource.belframework.org/belframework/20131211/annotation/disease.belanno"
+DEFINE ANNOTATION MeSHAnatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/mesh-anatomy.belanno"
+DEFINE ANNOTATION Species AS URL "http://resource.belframework.org/belframework/20131211/annotation/species-taxonomy-id.belanno"
+DEFINE ANNOTATION TextLocation AS LIST {"Abstract","Results","Legend","Review"}
+
+SET STATEMENT_GROUP = "Group 1"
+
+p(HGNC:HGF) decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"cell death"))
+a(CHEBI:caffeine) decreases (bp(GOBP:"response to ionizing radiation") increases p(HGNC:CHEK2,pmod(P,T,68)))
+p(HGNC:KRT18) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death"))
+p(HGNC:KRT8) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death"))
+p(MGI:Il4) decreases (p(MGI:Ifng) increases a(CHEBI:"nitric oxide"))
+a(CHEBI:galangin) decreases (a(CHEBI:"2,3,7,8-tetrachlorodibenzodioxine") increases tscript(p(MGI:Ahr)))
+bp(GOBP:"MAPK cascade") decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"apoptotic process"))
+a(CHEBI:"trichostatin A") decreases (tscript(p(MGI:Msx3)) decreases r(MGI:Msx1))
+bp(GOBP:"response to hypoxia") increases (p(HGNC:TP53) increases bp(GOBP:"apoptotic process"))
+p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases path(MESHD:"Retinal Neovascularization"))
+p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases r(MGI:Vegfa))
+a(CHEBI:"Ro 31-8220") decreases (a(CHEBI:"phorbol 12,13-dibutanoate") increases p(MGI:Prkd1,pmod(P,S,916)))
+cat(p(HGNC:CASP3)) decreases (p(HGNC:PARP1) decreases cat(p(HGNC:DNASE1L3)))
+p(MGI:Nr1h2) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1))
+p(MGI:Nr1h3) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1))
+a(CHEBI:carboplatin) increases (p(MGI:Hif1a) decreases bp(GOBP:"apoptotic process"))
+p(MGI:Adipoq) decreases (p(MGI:Lep) decreases path(MESHD:"Diabetes Mellitus"))
+p(MGI:Adipoq) decreases (p(MGI:Apoe) decreases path(MESHD:Atherosclerosis))
+cat(p(MGI:Icmt)) increases (gtp(p(MGI:Kras)) increases path(MESHD:Neoplasms))
+cat(p(MGI:Icmt)) increases (kin(p(MGI:Braf)) increases path(MESHD:Neoplasms))
+a(CHEBI:acetylcysteine) decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S)))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))
+a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2)))
+
+UNSET STATEMENT_GROUP

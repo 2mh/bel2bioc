@@ -1,0 +1,344 @@
+##################################################################################
+# Document Properties Section
+
+SET DOCUMENT Name = "BEL Framework Small Corpus Document"
+SET DOCUMENT Description = "Approximately 2000 hand curated statements drawn from 57 PubMeds."
+SET DOCUMENT Version = 20131211
+SET DOCUMENT Copyright = "Copyright (c) 2011-2012, Selventa. All Rights Reserved."
+SET DOCUMENT Authors = Selventa
+SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
+SET DOCUMENT ContactInfo = "support@belframework.org"
+
+##################################################################################
+# Definitions Section
+
+DEFINE NAMESPACE CHEBI AS URL "http://resource.belframework.org/belframework/20131211/namespace/chebi.belns"
+DEFINE NAMESPACE CHEBIID AS URL "http://resource.belframework.org/belframework/20131211/namespace/chebi-ids.belns"
+DEFINE NAMESPACE EGID AS URL "http://resource.belframework.org/belframework/20131211/namespace/entrez-gene-ids.belns"
+DEFINE NAMESPACE GOBP AS URL "http://resource.belframework.org/belframework/20131211/namespace/go-biological-process.belns"
+DEFINE NAMESPACE HGNC AS URL "http://resource.belframework.org/belframework/20131211/namespace/hgnc-human-genes.belns"
+DEFINE NAMESPACE MESHCS AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-cellular-structures.belns"
+DEFINE NAMESPACE MESHD AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-diseases.belns"
+DEFINE NAMESPACE MESHPP AS URL "http://resource.belframework.org/belframework/20131211/namespace/mesh-processes.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20131211/namespace/mgi-mouse-genes.belns"
+DEFINE NAMESPACE RGD AS URL "http://resource.belframework.org/belframework/20131211/namespace/rgd-rat-genes.belns"
+DEFINE NAMESPACE SCHEM AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-legacy-chemicals.belns"
+DEFINE NAMESPACE SCOMP AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-named-complexes.belns"
+DEFINE NAMESPACE SDIS AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-legacy-diseases.belns"
+DEFINE NAMESPACE SFAM AS URL "http://resource.belframework.org/belframework/20131211/namespace/selventa-protein-families.belns"
+DEFINE NAMESPACE SPAC AS URL "http://resource.belframework.org/belframework/20131211/namespace/swissprot-ids.belns"
+
+# Dummy definitions
+DEFINE NAMESPACE PFH AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+DEFINE NAMESPACE NCH AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+DEFINE NAMESPACE GOCCID AS URL "http://resource.belframework.org/belframework/20131211/namespace/foobar.belns"
+
+DEFINE ANNOTATION Anatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/anatomy.belanno"
+DEFINE ANNOTATION Cell AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell.belanno"
+DEFINE ANNOTATION CellLine AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-line.belanno"
+DEFINE ANNOTATION CellStructure AS URL "http://resource.belframework.org/belframework/20131211/annotation/cell-structure.belanno"
+DEFINE ANNOTATION Disease AS URL "http://resource.belframework.org/belframework/20131211/annotation/disease.belanno"
+DEFINE ANNOTATION MeSHAnatomy AS URL "http://resource.belframework.org/belframework/20131211/annotation/mesh-anatomy.belanno"
+DEFINE ANNOTATION Species AS URL "http://resource.belframework.org/belframework/20131211/annotation/species-taxonomy-id.belanno"
+DEFINE ANNOTATION TextLocation AS LIST {"Abstract","Results","Legend","Review"}
+
+SET STATEMENT_GROUP = "Group 1"
+
+a(CHEBI:heparin) increases complex(p(MGI:Serpind1),p(MGI:F2))
+cat(p(MGI:Galc)) decreases a(CHEBI:psychosine)
+a(CHEBI:dexamethasone) increases tscript(p(MGI:Cebpb))
+a(CHEBI:"N-ethyl-N-nitrosourea") increases p(MGI:Rhob)
+tscript(p(MGI:Cebpb)) increases p(MGI:Pparg)
+a(CHEBI:cisplatin) increases p(MGI:Rhob)
+a(CHEBI:glucocorticoid) decreases p(MGI:Pomc)
+a(CHEBI:glucocorticoid) increases p(MGI:Resp18)
+gtp(p(MGI:Rac1)) increases a(CHEBI:"reactive oxygen species")
+gtp(p(MGI:Hras)) increases a(CHEBI:"reactive oxygen species")
+p(MGI:Egf) increases a(CHEBI:"reactive oxygen species")
+p(MGI:Il1b) increases a(CHEBI:"reactive oxygen species")
+p(MGI:Tnf) increases a(CHEBI:"reactive oxygen species")
+a(CHEBI:glucocorticoid) decreases p(MGI:Tnxb)
+a(CHEBI:lipopolysaccharide) increases p(MGI:Il1rn)
+a(CHEBI:mifepristone) decreases tscript(p(MGI:Pgr))
+kin(p(MGI:Fyn)) increases bp(GOBP:"cell adhesion")
+kin(p(MGI:Fyn)) increases p(MGI:Ctnnb1,pmod(P,Y))
+kin(p(MGI:Fyn)) increases p(MGI:Ctnnd1,pmod(P,Y))
+kin(p(MGI:Fyn)) increases p(MGI:Jup,pmod(P,Y))
+cat(p(HGNC:CASP3)) directlyIncreases kin(p(HGNC:PAK2))
+cat(p(MGI:Sod2)) decreases a(CHEBI:"reactive oxygen species")
+# p(HGNC:HGF) decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"cell death")) # statement within statement
+cat(p(HGNC:FAS)) increases p(HGNC:RB1,pmod(P))
+cat(p(HGNC:ATP5A1)) decreases bp(GOBP:"cell migration")
+cat(p(HGNC:ATP5A1)) decreases bp(GOBP:"cell proliferation")
+cat(p(HGNC:ATP5B)) decreases bp(GOBP:"cell proliferation")
+cat(p(HGNC:ATP5B)) decreases bp(GOBP:"cell migration")
+cat(p(HGNC:TIMP2)) decreases cat(p(HGNC:MMP2))
+p(MGI:Blmh) decreases path(MESHD:"Cystic Fibrosis")
+p(HGNC:FGF1) increases bp(GOBP:"cell differentiation")
+p(HGNC:FGF1) increases bp(GOBP:"cell proliferation")
+cat(p(HGNC:BTRC)) increases deg(p(HGNC:CTNNB1))
+cat(p(HGNC:AGTR1)) increases p(HGNC:OLR1)
+cat(p(HGNC:F2R)) increases p(HGNC:IL6)
+cat(p(HGNC:F2R)) increases p(HGNC:CSF3)
+a(CHEBI:lipopolysaccharide) increases p(MGI:Nos2)
+bp(GOBP:"MAPK cascade") directlyIncreases p(HGNC:ESR1,pmod(P))
+bp(GOBP:"MAPK cascade") increases tscript(p(HGNC:ESR1))
+cat(p(HGNC:IL6R)) increases tscript(p(HGNC:STAT3))
+kin(p(HGNC:MET)) increases p(HGNC:CTNNB1,pmod(P,Y))
+kin(p(HGNC:MET)) increases bp(GOBP:"cell migration")
+kin(p(HGNC:MET)) decreases bp(GOBP:"cell adhesion")
+cat(p(MGI:Casp3)) increases deg(p(MGI:Tax1bp1))
+cat(p(MGI:Casp6)) increases deg(p(MGI:Tax1bp1))
+cat(p(MGI:Casp7)) increases deg(p(MGI:Tax1bp1))
+complex(p(MGI:Tlk2),p(MGI:Ywhaz)) decreases tloc(p(MGI:Tlk2),GOCCID:0005737,GOCCID:0005634)
+complex(p(HGNC:PDGFA),p(HGNC:PDGFB)) increases bp(GOBP:mitosis)
+a(CHEBI:ciprofibrate) increases p(MGI:Ppara,pmod(P))
+cat(p(MGI:Klra16)) increases p(MGI:Tyrobp,pmod(P))
+cat(p(MGI:Tnfrsf12a)) decreases bp(GOBP:"cell migration")
+cat(p(MGI:Tnfrsf12a)) decreases bp(GOBP:"cell growth")
+cat(p(MGI:Tnfrsf12a)) decreases bp(GOBP:"cell adhesion")
+cat(p(HGNC:CASP3)) directlyIncreases cat(p(HGNC:GAS2))
+cat(p(HGNC:CASP3)) directlyIncreases cat(p(HGNC:GAS2))
+p(MGI:Fdft1) increases a(CHEBI:dolichol)
+p(MGI:Fdft1) increases a(CHEBI:ergosterol)
+a(CHEBI:androgen) directlyIncreases complex(p(HGNC:AR),p(HGNC:PIAS1))
+a(CHEBI:androgen) directlyIncreases complex(p(HGNC:AR),p(HGNC:PIAS1))
+kin(p(MGI:Kdr)) increases path(MESHD:"Retinal Neovascularization")
+p(HGNC:DRG1) increases r(HGNC:CDH1)
+p(HGNC:DRG1) increases bp(GOBP:"cell differentiation")
+a(CHEBI:"N-acetyl-D-galactosamine") decreases p(MGI:Fus)
+a(CHEBI:"chondroitin sulfate") decreases p(MGI:Fus)
+cat(p(MGI:Ptafr)) increases tloc(p(MGI:Prkca),GOCCID:0005737,GOCCID:0005886)
+cat(p(MGI:Ptafr)) increases tloc(p(MGI:Prkce),GOCCID:0005737,GOCCID:0005886)
+# a(CHEBI:caffeine) decreases (bp(GOBP:"response to ionizing radiation") increases p(HGNC:CHEK2,pmod(P,T,68))) # statement within statement
+bp(GOBP:"response to ionizing radiation") increases p(HGNC:CHEK2,pmod(P,T,68))
+# p(HGNC:KRT18) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death")) # statement within statement
+# p(HGNC:KRT8) decreases (p(HGNC:TNF) increases bp(GOBP:"cell death")) # statement within statement
+p(HGNC:TNF) increases bp(GOBP:"cell death")
+cat(p(HGNC:UBE2L3)) increases deg(p(HGNC:FOS))
+cat(p(HGNC:UBE2L3)) increases deg(p(HGNC:MYC))
+cat(p(HGNC:UBE2L3)) increases deg(p(HGNC:TP53))
+a(CHEBI:genistein) decreases p(MGI:Cftr)
+cat(p(HGNC:F2)) increases p(HGNC:F2R,pmod(P))
+complex(p(HGNC:PTTG1IP),p(HGNC:PTTG1)) directlyIncreases tloc(p(HGNC:PTTG1),GOCCID:0005737,GOCCID:0005634)
+# p(MGI:Il4) decreases (p(MGI:Ifng) increases a(CHEBI:"nitric oxide")) # statement within statement
+p(MGI:Il4) decreases r(MGI:Nos2)
+p(MGI:Il4) decreases a(CHEBI:"nitric oxide")
+p(MGI:Apc) decreases path(MESHD:Adenoma)
+cat(p(HGNC:FAS)) increases cat(p(HGNC:CASP9))
+cat(p(HGNC:FAS)) increases tloc(p(HGNC:CYCS),GOCCID:0005739,GOCCID:0005737)
+cat(p(HGNC:CASP1)) increases p(HGNC:IL1B)
+cat(p(HGNC:PRDX2)) increases deg(a(CHEBI:"lipid hydroperoxide"))
+p(MGI:Chek1) decreases bp(GOBP:"cell death")
+p(MGI:Chek1) increases bp(GOBP:"cell proliferation")
+kin(p(MGI:Chek1)) decreases path(MESHD:Neoplasms)
+p(HGNC:TLR2) increases cat(p(HGNC:CASP1))
+cat(p(HGNC:CASP1)) increases p(HGNC:IL1B)
+cat(p(HGNC:MYD88)) increases bp(GOBP:"apoptotic process")
+cat(p(HGNC:TLR2)) increases cat(p(HGNC:MYD88))
+bp(GOBP:"cell proliferation") increases tloc(p(HGNC:PTPN14),GOCCID:0005737,GOCCID:0005634)
+# a(CHEBI:galangin) decreases (a(CHEBI:"2,3,7,8-tetrachlorodibenzodioxine") increases tscript(p(MGI:Ahr))) # statement within statement
+a(CHEBI:galangin) decreases complex(a(CHEBI:"2,3,7,8-tetrachlorodibenzodioxine"),p(MGI:Ahr))
+a(CHEBI:galangin) increases tscript(p(MGI:Ahr))
+cat(p(HGNC:ALOX5)) increases bp(GOBP:"cell proliferation")
+cat(p(HGNC:ALOX5)) decreases bp(GOBP:"programmed cell death")
+cat(p(HGNC:FAS)) increases bp(GOBP:"apoptotic process")
+bp(GOBP:"MAPK cascade") increases cat(p(MGI:Tnks))
+bp(GOBP:"MAPK cascade") directlyIncreases p(MGI:Tnks,pmod(P))
+path(MESHD:Ischemia) increases p(MGI:Icam5)
+# bp(GOBP:"MAPK cascade") decreases (cat(p(HGNC:FAS)) increases bp(GOBP:"apoptotic process")) # statement within statement
+bp(GOBP:"response to hypoxia") increases deg(p(HGNC:CREB1))
+bp(GOBP:"response to hypoxia") increases deg(p(HGNC:CREB1))
+bp(GOBP:"response to hypoxia") increases p(HGNC:CREB1,pmod(P,S))
+cat(p(HGNC:CALM1)) decreases complex(p(HGNC:MEF2A),p(HGNC:HDAC4))
+# a(CHEBI:"trichostatin A") decreases (tscript(p(MGI:Msx3)) decreases r(MGI:Msx1)) # statement within statement
+a(CHEBI:"nitric oxide") directlyDecreases kin(p(MGI:Mapk8))
+p(HGNC:HNRNPK) increases bp(GOBP:"cell proliferation")
+p(HGNC:HNRNPK) increases r(HGNC:MYC)
+cat(p(HGNC:IL2)) increases kin(p(HGNC:LYN))
+cat(p(HGNC:IL2)) increases complex(p(HGNC:LYN), p(HGNC:IL2RB))
+cat(p(HGNC:XIAP)) decreases cat(p(HGNC:CASP9))
+cat(p(HGNC:DIABLO)) decreases cat(p(HGNC:XIAP))
+a(CHEBI:wortmannin) decreases p(MGI:Ddit3)
+a(CHEBI:LY294002) decreases p(MGI:Ddit3)
+a(CHEBI:lipopolysaccharide) increases a(CHEBI:"nitric oxide")
+p(MGI:Spp1) decreases a(CHEBI:"nitric oxide")
+kin(p(MGI:Src)) decreases path(MESHD:Osteopetrosis)
+kin(p(MGI:Src)) increases bp(GOBP:"apoptotic process")
+kin(p(MGI:Src)) decreases path(MESHD:Osteopetrosis)
+bp(GOBP:"response to hypoxia") increases p(HGNC:TP53)
+# bp(GOBP:"response to hypoxia") increases (p(HGNC:TP53) increases bp(GOBP:"apoptotic process")) # statement within statement
+p(HGNC:PTGER1) increases bp(GOBP:"wound healing")
+p(HGNC:PTGER4) increases bp(GOBP:"wound healing")
+p(HGNC:BMP6) increases bp(GOBP:"cell differentiation")
+cat(p(HGNC:PLAUR)) increases bp(GOBP:"cell migration")
+complex(p(HGNC:PLAU),p(HGNC:PLAUR)) directlyIncreases cat(p(HGNC:PLAUR))
+sec(p(MGI:S100b)) increases a(CHEBI:"nitric oxide")
+path(MESHD:Obesity) increases sec(p(MGI:Retn))
+a(CHEBI:rosiglitazone) decreases sec(p(MGI:Retn))
+bp(GOBP:"response to hypoxia") increases kin(p(HGNC:MAPK1))
+bp(GOBP:"response to hypoxia") increases kin(p(HGNC:MAPK3))
+a(CHEBI:catecholamine) decreases cat(p(MGI:Lpl))
+p(HGNC:DCC) increases cat(p(HGNC:CASP9))
+cat(p(HGNC:CASP9)) directlyIncreases cat(p(HGNC:CASP3))
+p(MGI:Aifm1) increases bp(GOBP:"cell death")
+p(HGNC:EHF) decreases path(MESHD:Neoplasms)
+bp(GOBP:"apoptotic process") increases deg(p(HGNC:EIF4B))
+bp(GOBP:"apoptotic process") decreases complex(p(HGNC:EIF4B),p(HGNC:PABPN1))
+cat(p(HGNC:CASP3)) increases deg(p(HGNC:EIF4B))
+cat(p(MGI:Hsd11b1)) directlyIncreases rxn(reactants(a(CHEBI:cortisone)),products(a(CHEBI:cortisol)))
+bp(GOBP:"response to ionizing radiation") increases p(HGNC:JUN,pmod(P,S,73))
+bp(GOBP:"response to ionizing radiation") increases p(HGNC:JUN)
+cat(p(HGNC:F2R)) increases p(HGNC:PTK2,pmod(P))
+cat(p(HGNC:F2R)) increases p(HGNC:PXN,pmod(P))
+cat(p(HGNC:SLC9A1)) increases path(MESHD:Hypertension)
+cat(p(HGNC:ITGB1)) increases p(HGNC:PTK2,pmod(P,Y,397))
+cat(p(HGNC:CASP3)) increases kin(p(HGNC:ROCK1))
+p(HGNC:CDKN1A) increases bp(GOBP:"cell differentiation")
+p(HGNC:CDKN1A) decreases bp(GOBP:"cell growth")
+bp(GOBP:"MAPK cascade") increases p(HGNC:CDKN1A)
+a(CHEBI:fenofibrate) increases p(MGI:Pltp)
+p(HGNC:NGF) increases path(MESHD:Fibrosis)
+complex(p(MGI:Il12a),p(MGI:Il12b)) increases bp(GOBP:"inflammatory response")
+cat(p(HGNC:DFFB)) increases bp(GOBP:"apoptotic DNA fragmentation")
+complex(p(HGNC:DFFA), p(HGNC:DFFB)) decreases cat(p(HGNC:DFFB))
+cat(p(HGNC:DFFA)) decreases cat(p(HGNC:DFFB))
+cat(p(MGI:Ednrb)) increases cat(p(MGI:Slc9a3))
+complex(p(MGI:Edn1),p(MGI:Ednrb)) increases cat(p(MGI:Slc9a3))
+path(MESHD:Acidosis) increases p(MGI:Edn1)
+# p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases path(MESHD:"Retinal Neovascularization")) # statement within statement
+p(MGI:Abl1) increases path(MESHD:"Retinal Neovascularization")
+# p(MGI:Abl1) increases (path(MESHD:Hyperoxia) increases r(MGI:Vegfa)) # statement within statement
+p(MGI:Abl1) increases r(MGI:Vegfa)
+cat(p(MGI:Tlr2)) increases p(MGI:Tnf)
+cat(p(MGI:Tlr2)) increases p(MGI:Il12b)
+cat(p(MGI:Tlr2)) increases p(MGI:Il12a)
+cat(p(MGI:Tlr2)) increases a(CHEBI:"nitric oxide")
+gtp(p(HGNC:RAC1)) increases tscript(p(HGNC:STAT3))
+p(HGNC:RAC1) increases p(HGNC:IL6)
+p(HGNC:RAC1) increases p(HGNC:IL6R)
+cat(p(HGNC:IL6R)) increases tscript(p(HGNC:STAT3))
+a(CHEBI:staurosporine) decreases p(MGI:Hist1h1d,pmod(P))
+a(CHEBI:"Ro 31-8220") decreases kin(p(MGI:Prkd1))
+# a(CHEBI:"Ro 31-8220") decreases (a(CHEBI:"phorbol 12,13-dibutanoate") increases p(MGI:Prkd1,pmod(P,S,916))) # statement within statement
+a(CHEBI:"phorbol 12,13-dibutanoate") increases kin(p(MGI:Prkd1))
+a(CHEBI:vasopressin) increases kin(p(MGI:Prkd1))
+a(CHEBI:vasopressin) increases p(MGI:Prkd1,pmod(P,S,916))
+a(CHEBI:etoposide) increases p(MGI:H2afx,pmod(P))
+a(CHEBI:"cholic acid") increases r(MGI:Apoc2)
+a(CHEBI:"cholic acid") increases r(MGI:Pltp)
+p(HGNC:PARP1) decreases cat(p(HGNC:DNASE1L3))
+# cat(p(HGNC:CASP3)) decreases (p(HGNC:PARP1) decreases cat(p(HGNC:DNASE1L3))) # statement within statement
+cat(p(HGNC:CASP3)) decreases p(HGNC:PARP1)
+cat(p(MGI:Suv39h1)) decreases path(MESHD:Neoplasms)
+cat(p(MGI:Suv39h2)) decreases path(MESHD:Neoplasms)
+p(MGI:Gbp2) increases bp(GOBP:"cell growth")
+a(CHEBI:lipopolysaccharide) increases tscript(p(MGI:Ppargc1a))
+cat(p(HGNC:MYD88)) directlyIncreases kin(p(HGNC:IRAK1))
+p(MGI:Mst1) increases cat(p(MGI:Mst1r))
+cat(p(MGI:Mst1r)) decreases r(MGI:Nos2)
+cat(p(MGI:Mst1r)) decreases a(CHEBI:"nitric oxide")
+p(MGI:Apoa1) increases complex(a(CHEBI:"high-density lipoprotein"),a(CHEBI:cholesterol))
+p(MGI:Apoa2) increases complex(a(CHEBI:"high-density lipoprotein"),a(CHEBI:cholesterol))
+a(CHEBI:"lithocholic acid") increases tscript(p(MGI:Nr1i2))
+a(CHEBI:oxysterol) decreases tscript(p(MGI:Srebf2))
+# p(MGI:Nr1h2) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1)) # statement within statement
+# p(MGI:Nr1h3) increases (a(CHEBI:cholesterol) increases r(MGI:Cyp7a1)) # statement within statement
+bp(GOBP:"inflammatory response") increases p(MGI:Adcyap1)
+bp(GOBP:"inflammatory response") increases p(MGI:Vip)
+cat(p(MGI:Nos1)) increases bp(GOBP:angiogenesis)
+cat(p(MGI:Nos2)) increases bp(GOBP:angiogenesis)
+cat(p(HGNC:IL6ST)) directlyIncreases kin(p(HGNC:JAK2))
+p(MGI:Angpt2) increases path(MESHD:"Retinal Neovascularization")
+cat(p(MGI:Alox5)) increases path(MESHD:Atherosclerosis)
+p(MGI:Fgf2) increases bp(GOBP:"cell cycle")
+cat(p(HGNC:FADD)) increases cat(p(HGNC:CASP8))
+cat(p(HGNC:FADD)) increases cat(p(HGNC:CASP10))
+bp(GOBP:"apoptotic process") increases cat(p(MGI:Pla2g4a))
+bp(GOBP:"apoptotic process") increases cat(p(MGI:Pla2g6))
+bp(GOBP:"response to hypoxia") increases cat(p(MGI:Entpd1))
+bp(GOBP:"response to hypoxia") increases cat(p(MGI:Nt5e))
+cat(p(HGNC:CASP10)) increases cat(p(HGNC:CASP3))
+cat(p(MGI:Lox)) decreases tloc(p(MGI:Fgf2),GOCCID:0005737,GOCCID:0005634)
+cat(p(HGNC:MMP12)) increases deg(p(HGNC:ELN))
+cat(p(HGNC:MMP2)) increases deg(p(HGNC:ELN))
+cat(p(HGNC:MMP7)) increases deg(p(HGNC:ELN))
+cat(p(HGNC:MMP9)) increases deg(p(HGNC:ELN))
+cat(p(MGI:Ctss)) increases bp(GOBP:angiogenesis)
+cat(p(HGNC:BCL2)) decreases cat(p(HGNC:BAK1))
+cat(p(HGNC:DOCK1)) directlyIncreases gtp(p(HGNC:RAC1))
+p(MGI:Abca1) decreases path(MESHD:Atherosclerosis)
+cat(p(MGI:Npy)) increases bp(GOBP:angiogenesis)
+cat(p(MGI:Npy2r)) increases bp(GOBP:angiogenesis)
+cat(p(MGI:Ptger4)) increases bp(GOBP:"cell migration")
+cat(p(HGNC:ADAM17)) increases p(HGNC:AREG)
+complex(p(MGI:Yy1),p(MGI:Rb1)) decreases tscript(p(MGI:Yy1))
+cat(p(HGNC:MMP9)) increases p(HGNC:VEGFA)
+cat(p(HGNC:MMP9)) increases p(HGNC:VEGFA)
+complex(p(MGI:Vdr),p(MGI:Rxra)) directlyIncreases tscript(p(MGI:Vdr))
+a(CHEBI:"bile salt") decreases complex(p(MGI:Crebbp),p(MGI:Hnf4a))
+a(CHEBI:"bile salt") decreases complex(p(MGI:Hnf4a),p(MGI:Ppargc1a))
+phos(p(MGI:Pten)) decreases path(MESHD:Hypertrophy)
+p(MGI:Cry1) increases bp(GOBP:"cell cycle")
+cat(p(HGNC:HIF1AN)) directlyDecreases complex(p(HGNC:HIF1A),p(HGNC:EP300))
+cat(p(HGNC:HIF1AN)) directlyDecreases complex(p(HGNC:HIF1A),p(HGNC:CREBBP))
+cat(p(HGNC:HIF1AN)) directlyDecreases tscript(p(HGNC:HIF1A))
+# a(CHEBI:carboplatin) increases (p(MGI:Hif1a) decreases bp(GOBP:"apoptotic process")) # statement within statement
+cat(p(HGNC:CHFR)) increases deg(p(HGNC:PLK1))
+path(MESHD:Hyperoxia) decreases sec(p(MGI:Vegfa))
+cat(p(HGNC:TIMP2)) decreases cat(p(HGNC:MMP14))
+cat(p(HGNC:CASP3)) increases cat(p(HGNC:CASP7))
+# p(MGI:Adipoq) decreases (p(MGI:Lep) decreases path(MESHD:"Diabetes Mellitus")) # statement within statement
+# p(MGI:Adipoq) decreases (p(MGI:Apoe) decreases path(MESHD:Atherosclerosis)) # statement within statement
+p(MGI:Apoe) decreases path(MESHD:Atherosclerosis)
+p(MGI:Ccr2) increases path(MESHD:Atherosclerosis)
+p(MGI:Csf1) increases path(MESHD:Atherosclerosis)
+p(MGI:Ccl2) increases path(MESHD:Atherosclerosis)
+cat(p(HGNC:CASP7)) directlyDecreases cat(p(HGNC:DFFA))
+cat(p(HGNC:CASP3)) directlyDecreases cat(p(HGNC:DFFA))
+path(MESHD:Ischemia) increases sec(p(MGI:Csf3))
+path(MESHD:Ischemia) increases sec(p(MGI:Cxcl1))
+path(MESHD:Ischemia) increases sec(p(MGI:Il6))
+cat(p(MGI:Icmt)) increases bp(GOBP:"cell growth")
+# cat(p(MGI:Icmt)) increases (gtp(p(MGI:Kras)) increases path(MESHD:Neoplasms)) # statement within statement
+# cat(p(MGI:Icmt)) increases (kin(p(MGI:Braf)) increases path(MESHD:Neoplasms)) # statement within statement
+gtp(p(MGI:Kras)) increases path(MESHD:Neoplasms)
+kin(p(MGI:Braf)) increases path(MESHD:Neoplasms)
+a(CHEBI:castanospermine) decreases complex(p(MGI:Asgr2),p(MGI:Pdia3))
+cat(p(MGI:Entpd1)) decreases path(MESHD:Ischemia)
+cat(p(MGI:Hsd11b1)) increases bp(MESHD:"Insulin Resistance")
+cat(p(MGI:Hsd11b1)) increases path(MESHD:Obesity)
+cat(p(MGI:Hsd11b1)) increases path(MESHD:Hypertension)
+complex(p(MGI:Wwp2),p(MGI:Pou5f1)) directlyIncreases deg(p(MGI:Pou5f1))
+cat(p(MGI:Lgals12)) increases bp(GOBP:"fat cell differentiation")
+cat(p(MGI:Lgals12)) increases r(MGI:Cebpa)
+cat(p(MGI:Lgals12)) increases r(MGI:Cebpb)
+cat(p(MGI:Lgals12)) increases r(MGI:Pparg)
+cat(p(MGI:Lgals12)) increases bp(GOBP:"fat cell differentiation")
+cat(p(MGI:Agtr1a)) increases path(MESHD:Hypertrophy)
+cat(p(MGI:Vipr2)) increases bp(GOBP:"inflammatory response")
+cat(p(HGNC:F2)) increases p(HGNC:FOS)
+cat(p(HGNC:F2)) increases tscript(p(HGNC:JUN))
+complex(p(MGI:Tsc1),p(MGI:Tsc2)) decreases bp(GOBP:"cell growth")
+complex(p(MGI:Tsc1),p(MGI:Tsc2)) decreases kin(p(MGI:Rps6kb1))
+cat(p(HGNC:CASP8)) directlyIncreases cat(p(HGNC:CASP3))
+cat(p(HGNC:CASP9)) directlyIncreases cat(p(HGNC:CASP3))
+cat(p(HGNC:CASP9)) directlyIncreases cat(p(HGNC:CASP6))
+cat(p(HGNC:CASP9)) directlyIncreases cat(p(HGNC:CASP7))
+# a(CHEBI:acetylcysteine) decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))) # statement within statement
+# a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1))) # statement within statement
+# a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))) # statement within statement
+# a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S))) # statement within statement
+# a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)) # statement within statement
+# a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)) # statement within statement
+# a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2))) # statement within statement
+path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1))
+path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))
+path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))
+path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P))
+path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P))
+path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)
+path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)
+
+UNSET STATEMENT_GROUP
