@@ -1,0 +1,25 @@
+##################################################################################
+# Document Properties Section
+
+SET DOCUMENT Name = "Sample BEL document"
+SET DOCUMENT Licenses = "Creative Commons Attribution-Non-Commercial-ShareAlike 3.0 Unported License"
+
+##################################################################################
+# Definitions Section
+
+DEFINE NAMESPACE CHEBI AS URL "http://resource.belframework.org/belframework/20131211/namespace/chebi.belns"
+DEFINE NAMESPACE MGI AS URL "http://resource.belframework.org/belframework/20131211/namespace/mgi-mouse-genes.belns"
+
+##################################################################################
+# Statements Section
+
+a(CHEBI:heparin) increases complex(p(MGI:Serpind1),p(MGI:F2))
+cat(p(MGI:Galc)) decreases a(CHEBI:psychosine)
+a(CHEBI:dexamethasone) increases tscript(p(MGI:Cebpb))
+a(CHEBI:"N-ethyl-N-nitrosourea") increases p(MGI:Rhob)
+tscript(p(MGI:Cebpb)) increases p(MGI:Pparg)
+a(CHEBI:cisplatin) increases p(MGI:Rhob)
+a(CHEBI:glucocorticoid) decreases p(MGI:Pomc)
+a(CHEBI:glucocorticoid) increases p(MGI:Resp18)
+gtp(p(MGI:Rac1)) increases a(CHEBI:"reactive oxygen species")
+gtp(p(MGI:Hras)) increases a(CHEBI:"reactive oxygen species")

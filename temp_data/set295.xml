@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-BioC from 295 statementsa(CHEBI:heparin) increases complex(p(MGI:Serpind1),p(MGI:F2))
+BioC from 294 statementsa(CHEBI:heparin) increases complex(p(MGI:Serpind1),p(MGI:F2))
 cat(p(MGI:Galc)) decreases a(CHEBI:psychosine)
 a(CHEBI:dexamethasone) increases tscript(p(MGI:Cebpb))
 a(CHEBI:"N-ethyl-N-nitrosourea") increases p(MGI:Rhob)
@@ -282,7 +282,6 @@ cat(p(HGNC:CASP9)) directlyIncreases cat(p(HGNC:CASP3))
 cat(p(HGNC:CASP9)) directlyIncreases cat(p(HGNC:CASP6))
 cat(p(HGNC:CASP9)) directlyIncreases cat(p(HGNC:CASP7))
 a(CHEBI:acetylcysteine) decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))
-a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1)))
 a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))
 a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S)))
 a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))
@@ -11806,8 +11805,8 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
         <text/>
       </annotation>
       <annotation id="a1069">
-        <infon key="BEL (full)">p(MGI:Mapk1)</infon>
-        <infon key="MGI">Mapk1</infon>
+        <infon key="BEL (full)">p(MGI:Mapk3)</infon>
+        <infon key="MGI">Mapk3</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
@@ -11823,7 +11822,7 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
       </annotation>
       <relation id="r702">
         <infon key="type">decreases</infon>
-        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1)))</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))</infon>
         <infon key="BEL (relative)">a1067 decreases r703</infon>
         <node refid="a1067" role="cause"/>
         <node refid="r703" role="theme"/>
@@ -11831,7 +11830,7 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
       </relation>
       <relation id="r703">
         <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1))</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))</infon>
         <infon key="BEL (relative)">a1068 increases r704</infon>
         <node refid="a1068" role="cause"/>
         <node refid="r704" role="theme"/>
@@ -11839,7 +11838,7 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
       </relation>
       <relation id="r704">
         <infon key="type">kinaseActivity</infon>
-        <infon key="BEL (full)">kin(p(MGI:Mapk1))</infon>
+        <infon key="BEL (full)">kin(p(MGI:Mapk3))</infon>
         <infon key="BEL (relative)">kin(a1069)</infon>
         <node refid="a1069" role="self"/>
       </relation>
@@ -11862,42 +11861,62 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
         <text/>
       </annotation>
       <annotation id="a1074">
-        <infon key="BEL (full)">p(MGI:Mapk3)</infon>
-        <infon key="MGI">Mapk3</infon>
+        <infon key="BEL (full)">MGI:Nfe2l2</infon>
+        <infon key="MGI">Nfe2l2</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
       <annotation id="a1075">
-        <infon key="trigger">increases</infon>
+        <infon key="BEL (full)">P</infon>
+        <infon key="">P</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
       <annotation id="a1076">
+        <infon key="BEL (full)">S</infon>
+        <infon key="">S</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a1077">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a1078">
         <infon key="trigger">decreases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
       <relation id="r705">
         <infon key="type">decreases</infon>
-        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3)))</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S)))</infon>
         <infon key="BEL (relative)">a1072 decreases r706</infon>
         <node refid="a1072" role="cause"/>
         <node refid="r706" role="theme"/>
-        <node refid="a1076" role="trigger"/>
+        <node refid="a1078" role="trigger"/>
       </relation>
       <relation id="r706">
         <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S))</infon>
         <infon key="BEL (relative)">a1073 increases r707</infon>
         <node refid="a1073" role="cause"/>
         <node refid="r707" role="theme"/>
-        <node refid="a1075" role="trigger"/>
+        <node refid="a1077" role="trigger"/>
       </relation>
       <relation id="r707">
-        <infon key="type">kinaseActivity</infon>
-        <infon key="BEL (full)">kin(p(MGI:Mapk3))</infon>
-        <infon key="BEL (relative)">kin(a1074)</infon>
-        <node refid="a1074" role="self"/>
+        <infon key="type">proteinAbundance</infon>
+        <infon key="BEL (full)">p(MGI:Nfe2l2,pmod(P,S))</infon>
+        <infon key="BEL (relative)">p(a1074,r708)</infon>
+        <node refid="a1074" role="member"/>
+        <node refid="r708" role="member"/>
+      </relation>
+      <relation id="r708">
+        <infon key="type">proteinModification</infon>
+        <infon key="BEL (full)">pmod(P,S)</infon>
+        <infon key="BEL (relative)">pmod(a1075,a1076)</infon>
+        <node refid="a1075" role="member"/>
+        <node refid="a1076" role="member"/>
       </relation>
     </passage>
   </document>
@@ -11905,75 +11924,69 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1284</id>
     <passage>
       <offset/>
-      <annotation id="a1077">
+      <annotation id="a1079">
         <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
         <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1078">
+      <annotation id="a1080">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1079">
-        <infon key="BEL (full)">MGI:Nfe2l2</infon>
+      <annotation id="a1081">
+        <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
         <infon key="MGI">Nfe2l2</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1080">
-        <infon key="BEL (full)">P</infon>
-        <infon key="">P</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1081">
-        <infon key="BEL (full)">S</infon>
-        <infon key="">S</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
       <annotation id="a1082">
-        <infon key="trigger">increases</infon>
+        <infon key="BEL (full)">GOCCID:0005737</infon>
+        <infon key="GOCCID">0005737</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
       <annotation id="a1083">
+        <infon key="BEL (full)">GOCCID:0005634</infon>
+        <infon key="GOCCID">0005634</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a1084">
+        <infon key="trigger">increases</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a1085">
         <infon key="trigger">decreases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <relation id="r708">
-        <infon key="type">decreases</infon>
-        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S)))</infon>
-        <infon key="BEL (relative)">a1077 decreases r709</infon>
-        <node refid="a1077" role="cause"/>
-        <node refid="r709" role="theme"/>
-        <node refid="a1083" role="trigger"/>
-      </relation>
       <relation id="r709">
-        <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P,S))</infon>
-        <infon key="BEL (relative)">a1078 increases r710</infon>
-        <node refid="a1078" role="cause"/>
+        <infon key="type">decreases</infon>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))</infon>
+        <infon key="BEL (relative)">a1079 decreases r710</infon>
+        <node refid="a1079" role="cause"/>
         <node refid="r710" role="theme"/>
-        <node refid="a1082" role="trigger"/>
+        <node refid="a1085" role="trigger"/>
       </relation>
       <relation id="r710">
-        <infon key="type">proteinAbundance</infon>
-        <infon key="BEL (full)">p(MGI:Nfe2l2,pmod(P,S))</infon>
-        <infon key="BEL (relative)">p(a1079,r711)</infon>
-        <node refid="a1079" role="member"/>
-        <node refid="r711" role="member"/>
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">a1080 increases r711</infon>
+        <node refid="a1080" role="cause"/>
+        <node refid="r711" role="theme"/>
+        <node refid="a1084" role="trigger"/>
       </relation>
       <relation id="r711">
-        <infon key="type">proteinModification</infon>
-        <infon key="BEL (full)">pmod(P,S)</infon>
-        <infon key="BEL (relative)">pmod(a1080,a1081)</infon>
-        <node refid="a1080" role="member"/>
+        <infon key="type">translocation</infon>
+        <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">tloc(a1081,a1082,a1083)</infon>
         <node refid="a1081" role="member"/>
+        <node refid="a1082" role="member"/>
+        <node refid="a1083" role="member"/>
       </relation>
     </passage>
   </document>
@@ -11981,42 +11994,42 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1285</id>
     <passage>
       <offset/>
-      <annotation id="a1084">
+      <annotation id="a1086">
         <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
         <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1085">
+      <annotation id="a1087">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1086">
+      <annotation id="a1088">
         <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
         <infon key="MGI">Nfe2l2</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1087">
+      <annotation id="a1089">
         <infon key="BEL (full)">GOCCID:0005737</infon>
         <infon key="GOCCID">0005737</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1088">
+      <annotation id="a1090">
         <infon key="BEL (full)">GOCCID:0005634</infon>
         <infon key="GOCCID">0005634</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1089">
+      <annotation id="a1091">
         <infon key="trigger">increases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1090">
+      <annotation id="a1092">
         <infon key="trigger">decreases</infon>
         <location offset="" length=""/>
         <text/>
@@ -12024,26 +12037,26 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
       <relation id="r712">
         <infon key="type">decreases</infon>
         <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))</infon>
-        <infon key="BEL (relative)">a1084 decreases r713</infon>
-        <node refid="a1084" role="cause"/>
+        <infon key="BEL (relative)">a1086 decreases r713</infon>
+        <node refid="a1086" role="cause"/>
         <node refid="r713" role="theme"/>
-        <node refid="a1090" role="trigger"/>
+        <node refid="a1092" role="trigger"/>
       </relation>
       <relation id="r713">
         <infon key="type">increases</infon>
         <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
-        <infon key="BEL (relative)">a1085 increases r714</infon>
-        <node refid="a1085" role="cause"/>
+        <infon key="BEL (relative)">a1087 increases r714</infon>
+        <node refid="a1087" role="cause"/>
         <node refid="r714" role="theme"/>
-        <node refid="a1089" role="trigger"/>
+        <node refid="a1091" role="trigger"/>
       </relation>
       <relation id="r714">
         <infon key="type">translocation</infon>
         <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
-        <infon key="BEL (relative)">tloc(a1086,a1087,a1088)</infon>
-        <node refid="a1086" role="member"/>
-        <node refid="a1087" role="member"/>
+        <infon key="BEL (relative)">tloc(a1088,a1089,a1090)</infon>
         <node refid="a1088" role="member"/>
+        <node refid="a1089" role="member"/>
+        <node refid="a1090" role="member"/>
       </relation>
     </passage>
   </document>
@@ -12051,33 +12064,21 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1286</id>
     <passage>
       <offset/>
-      <annotation id="a1091">
+      <annotation id="a1093">
         <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
         <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1092">
+      <annotation id="a1094">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1093">
+      <annotation id="a1095">
         <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
         <infon key="MGI">Nfe2l2</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1094">
-        <infon key="BEL (full)">GOCCID:0005737</infon>
-        <infon key="GOCCID">0005737</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1095">
-        <infon key="BEL (full)">GOCCID:0005634</infon>
-        <infon key="GOCCID">0005634</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
@@ -12093,27 +12094,25 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
       </annotation>
       <relation id="r715">
         <infon key="type">decreases</infon>
-        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634))</infon>
-        <infon key="BEL (relative)">a1091 decreases r716</infon>
-        <node refid="a1091" role="cause"/>
+        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2)))</infon>
+        <infon key="BEL (relative)">a1093 decreases r716</infon>
+        <node refid="a1093" role="cause"/>
         <node refid="r716" role="theme"/>
         <node refid="a1097" role="trigger"/>
       </relation>
       <relation id="r716">
         <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
-        <infon key="BEL (relative)">a1092 increases r717</infon>
-        <node refid="a1092" role="cause"/>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2))</infon>
+        <infon key="BEL (relative)">a1094 increases r717</infon>
+        <node refid="a1094" role="cause"/>
         <node refid="r717" role="theme"/>
         <node refid="a1096" role="trigger"/>
       </relation>
       <relation id="r717">
-        <infon key="type">translocation</infon>
-        <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
-        <infon key="BEL (relative)">tloc(a1093,a1094,a1095)</infon>
-        <node refid="a1093" role="member"/>
-        <node refid="a1094" role="member"/>
-        <node refid="a1095" role="member"/>
+        <infon key="type">transcriptionalActivity</infon>
+        <infon key="BEL (full)">tscript(p(MGI:Nfe2l2))</infon>
+        <infon key="BEL (relative)">tscript(a1095)</infon>
+        <node refid="a1095" role="self"/>
       </relation>
     </passage>
   </document>
@@ -12122,54 +12121,35 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <passage>
       <offset/>
       <annotation id="a1098">
-        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile")</infon>
-        <infon key="CHEBI">(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1099">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1100">
-        <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
-        <infon key="MGI">Nfe2l2</infon>
+      <annotation id="a1099">
+        <infon key="BEL (full)">p(MGI:Mapk1)</infon>
+        <infon key="MGI">Mapk1</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1101">
+      <annotation id="a1100">
         <infon key="trigger">increases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1102">
-        <infon key="trigger">decreases</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
       <relation id="r718">
-        <infon key="type">decreases</infon>
-        <infon key="BEL (full)">a(CHEBI:"(2Z,3Z)-bis\{amino[(2-aminophenyl)sulfanyl]methylidene\}butanedinitrile") decreases (path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2)))</infon>
-        <infon key="BEL (relative)">a1098 decreases r719</infon>
+        <infon key="type">increases</infon>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1))</infon>
+        <infon key="BEL (relative)">a1098 increases r719</infon>
         <node refid="a1098" role="cause"/>
         <node refid="r719" role="theme"/>
-        <node refid="a1102" role="trigger"/>
+        <node refid="a1100" role="trigger"/>
       </relation>
       <relation id="r719">
-        <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tscript(p(MGI:Nfe2l2))</infon>
-        <infon key="BEL (relative)">a1099 increases r720</infon>
-        <node refid="a1099" role="cause"/>
-        <node refid="r720" role="theme"/>
-        <node refid="a1101" role="trigger"/>
-      </relation>
-      <relation id="r720">
-        <infon key="type">transcriptionalActivity</infon>
-        <infon key="BEL (full)">tscript(p(MGI:Nfe2l2))</infon>
-        <infon key="BEL (relative)">tscript(a1100)</infon>
-        <node refid="a1100" role="self"/>
+        <infon key="type">kinaseActivity</infon>
+        <infon key="BEL (full)">kin(p(MGI:Mapk1))</infon>
+        <infon key="BEL (relative)">kin(a1099)</infon>
+        <node refid="a1099" role="self"/>
       </relation>
     </passage>
   </document>
@@ -12177,36 +12157,36 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1288</id>
     <passage>
       <offset/>
-      <annotation id="a1103">
+      <annotation id="a1101">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1104">
-        <infon key="BEL (full)">p(MGI:Mapk1)</infon>
-        <infon key="MGI">Mapk1</infon>
+      <annotation id="a1102">
+        <infon key="BEL (full)">p(MGI:Mapk3)</infon>
+        <infon key="MGI">Mapk3</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1105">
+      <annotation id="a1103">
         <infon key="trigger">increases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <relation id="r721">
+      <relation id="r720">
         <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk1))</infon>
-        <infon key="BEL (relative)">a1103 increases r722</infon>
-        <node refid="a1103" role="cause"/>
-        <node refid="r722" role="theme"/>
-        <node refid="a1105" role="trigger"/>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))</infon>
+        <infon key="BEL (relative)">a1101 increases r721</infon>
+        <node refid="a1101" role="cause"/>
+        <node refid="r721" role="theme"/>
+        <node refid="a1103" role="trigger"/>
       </relation>
-      <relation id="r722">
+      <relation id="r721">
         <infon key="type">kinaseActivity</infon>
-        <infon key="BEL (full)">kin(p(MGI:Mapk1))</infon>
-        <infon key="BEL (relative)">kin(a1104)</infon>
-        <node refid="a1104" role="self"/>
+        <infon key="BEL (full)">kin(p(MGI:Mapk3))</infon>
+        <infon key="BEL (relative)">kin(a1102)</infon>
+        <node refid="a1102" role="self"/>
       </relation>
     </passage>
   </document>
@@ -12214,36 +12194,36 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1289</id>
     <passage>
       <offset/>
-      <annotation id="a1106">
+      <annotation id="a1104">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1107">
+      <annotation id="a1105">
         <infon key="BEL (full)">p(MGI:Mapk3)</infon>
         <infon key="MGI">Mapk3</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1108">
+      <annotation id="a1106">
         <infon key="trigger">increases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <relation id="r723">
+      <relation id="r722">
         <infon key="type">increases</infon>
         <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))</infon>
-        <infon key="BEL (relative)">a1106 increases r724</infon>
-        <node refid="a1106" role="cause"/>
-        <node refid="r724" role="theme"/>
-        <node refid="a1108" role="trigger"/>
+        <infon key="BEL (relative)">a1104 increases r723</infon>
+        <node refid="a1104" role="cause"/>
+        <node refid="r723" role="theme"/>
+        <node refid="a1106" role="trigger"/>
       </relation>
-      <relation id="r724">
+      <relation id="r723">
         <infon key="type">kinaseActivity</infon>
         <infon key="BEL (full)">kin(p(MGI:Mapk3))</infon>
-        <infon key="BEL (relative)">kin(a1107)</infon>
-        <node refid="a1107" role="self"/>
+        <infon key="BEL (relative)">kin(a1105)</infon>
+        <node refid="a1105" role="self"/>
       </relation>
     </passage>
   </document>
@@ -12251,36 +12231,43 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1290</id>
     <passage>
       <offset/>
-      <annotation id="a1109">
+      <annotation id="a1107">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1110">
-        <infon key="BEL (full)">p(MGI:Mapk3)</infon>
-        <infon key="MGI">Mapk3</infon>
+      <annotation id="a1108">
+        <infon key="BEL (full)">MGI:Nfe2l2</infon>
+        <infon key="MGI">Nfe2l2</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1111">
+      <annotation id="a1109">
+        <infon key="BEL (full)">pmod(P)</infon>
+        <infon key="">P</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
+      <annotation id="a1110">
         <infon key="trigger">increases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <relation id="r725">
+      <relation id="r724">
         <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases kin(p(MGI:Mapk3))</infon>
-        <infon key="BEL (relative)">a1109 increases r726</infon>
-        <node refid="a1109" role="cause"/>
-        <node refid="r726" role="theme"/>
-        <node refid="a1111" role="trigger"/>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P))</infon>
+        <infon key="BEL (relative)">a1107 increases r725</infon>
+        <node refid="a1107" role="cause"/>
+        <node refid="r725" role="theme"/>
+        <node refid="a1110" role="trigger"/>
       </relation>
-      <relation id="r726">
-        <infon key="type">kinaseActivity</infon>
-        <infon key="BEL (full)">kin(p(MGI:Mapk3))</infon>
-        <infon key="BEL (relative)">kin(a1110)</infon>
-        <node refid="a1110" role="self"/>
+      <relation id="r725">
+        <infon key="type">proteinAbundance</infon>
+        <infon key="BEL (full)">p(MGI:Nfe2l2,pmod(P))</infon>
+        <infon key="BEL (relative)">p(a1108,a1109)</infon>
+        <node refid="a1108" role="member"/>
+        <node refid="a1109" role="member"/>
       </relation>
     </passage>
   </document>
@@ -12288,43 +12275,43 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1291</id>
     <passage>
       <offset/>
-      <annotation id="a1112">
+      <annotation id="a1111">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1113">
+      <annotation id="a1112">
         <infon key="BEL (full)">MGI:Nfe2l2</infon>
         <infon key="MGI">Nfe2l2</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1114">
+      <annotation id="a1113">
         <infon key="BEL (full)">pmod(P)</infon>
         <infon key="">P</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1115">
+      <annotation id="a1114">
         <infon key="trigger">increases</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <relation id="r727">
+      <relation id="r726">
         <infon key="type">increases</infon>
         <infon key="BEL (full)">path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P))</infon>
-        <infon key="BEL (relative)">a1112 increases r728</infon>
-        <node refid="a1112" role="cause"/>
-        <node refid="r728" role="theme"/>
-        <node refid="a1115" role="trigger"/>
+        <infon key="BEL (relative)">a1111 increases r727</infon>
+        <node refid="a1111" role="cause"/>
+        <node refid="r727" role="theme"/>
+        <node refid="a1114" role="trigger"/>
       </relation>
-      <relation id="r728">
+      <relation id="r727">
         <infon key="type">proteinAbundance</infon>
         <infon key="BEL (full)">p(MGI:Nfe2l2,pmod(P))</infon>
-        <infon key="BEL (relative)">p(a1113,a1114)</infon>
+        <infon key="BEL (relative)">p(a1112,a1113)</infon>
+        <node refid="a1112" role="member"/>
         <node refid="a1113" role="member"/>
-        <node refid="a1114" role="member"/>
       </relation>
     </passage>
   </document>
@@ -12332,21 +12319,27 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
     <id>d1292</id>
     <passage>
       <offset/>
-      <annotation id="a1116">
+      <annotation id="a1115">
         <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
         <infon key="MESHD">Hyperoxia</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <annotation id="a1117">
-        <infon key="BEL (full)">MGI:Nfe2l2</infon>
+      <annotation id="a1116">
+        <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
         <infon key="MGI">Nfe2l2</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
+      <annotation id="a1117">
+        <infon key="BEL (full)">GOCCID:0005737</infon>
+        <infon key="GOCCID">0005737</infon>
+        <location offset="" length=""/>
+        <text/>
+      </annotation>
       <annotation id="a1118">
-        <infon key="BEL (full)">pmod(P)</infon>
-        <infon key="">P</infon>
+        <infon key="BEL (full)">GOCCID:0005634</infon>
+        <infon key="GOCCID">0005634</infon>
         <location offset="" length=""/>
         <text/>
       </annotation>
@@ -12355,18 +12348,19 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <relation id="r729">
+      <relation id="r728">
         <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases p(MGI:Nfe2l2,pmod(P))</infon>
-        <infon key="BEL (relative)">a1116 increases r730</infon>
-        <node refid="a1116" role="cause"/>
-        <node refid="r730" role="theme"/>
+        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">a1115 increases r729</infon>
+        <node refid="a1115" role="cause"/>
+        <node refid="r729" role="theme"/>
         <node refid="a1119" role="trigger"/>
       </relation>
-      <relation id="r730">
-        <infon key="type">proteinAbundance</infon>
-        <infon key="BEL (full)">p(MGI:Nfe2l2,pmod(P))</infon>
-        <infon key="BEL (relative)">p(a1117,a1118)</infon>
+      <relation id="r729">
+        <infon key="type">translocation</infon>
+        <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
+        <infon key="BEL (relative)">tloc(a1116,a1117,a1118)</infon>
+        <node refid="a1116" role="member"/>
         <node refid="a1117" role="member"/>
         <node refid="a1118" role="member"/>
       </relation>
@@ -12405,72 +12399,21 @@ path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634
         <location offset="" length=""/>
         <text/>
       </annotation>
-      <relation id="r731">
+      <relation id="r730">
         <infon key="type">increases</infon>
         <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
-        <infon key="BEL (relative)">a1120 increases r732</infon>
+        <infon key="BEL (relative)">a1120 increases r731</infon>
         <node refid="a1120" role="cause"/>
-        <node refid="r732" role="theme"/>
+        <node refid="r731" role="theme"/>
         <node refid="a1124" role="trigger"/>
       </relation>
-      <relation id="r732">
+      <relation id="r731">
         <infon key="type">translocation</infon>
         <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
         <infon key="BEL (relative)">tloc(a1121,a1122,a1123)</infon>
         <node refid="a1121" role="member"/>
         <node refid="a1122" role="member"/>
         <node refid="a1123" role="member"/>
-      </relation>
-    </passage>
-  </document>
-  <document>
-    <id>d1294</id>
-    <passage>
-      <offset/>
-      <annotation id="a1125">
-        <infon key="BEL (full)">path(MESHD:Hyperoxia)</infon>
-        <infon key="MESHD">Hyperoxia</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1126">
-        <infon key="BEL (full)">p(MGI:Nfe2l2)</infon>
-        <infon key="MGI">Nfe2l2</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1127">
-        <infon key="BEL (full)">GOCCID:0005737</infon>
-        <infon key="GOCCID">0005737</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1128">
-        <infon key="BEL (full)">GOCCID:0005634</infon>
-        <infon key="GOCCID">0005634</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <annotation id="a1129">
-        <infon key="trigger">increases</infon>
-        <location offset="" length=""/>
-        <text/>
-      </annotation>
-      <relation id="r733">
-        <infon key="type">increases</infon>
-        <infon key="BEL (full)">path(MESHD:Hyperoxia) increases tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
-        <infon key="BEL (relative)">a1125 increases r734</infon>
-        <node refid="a1125" role="cause"/>
-        <node refid="r734" role="theme"/>
-        <node refid="a1129" role="trigger"/>
-      </relation>
-      <relation id="r734">
-        <infon key="type">translocation</infon>
-        <infon key="BEL (full)">tloc(p(MGI:Nfe2l2),GOCCID:0005737,GOCCID:0005634)</infon>
-        <infon key="BEL (relative)">tloc(a1126,a1127,a1128)</infon>
-        <node refid="a1126" role="member"/>
-        <node refid="a1127" role="member"/>
-        <node refid="a1128" role="member"/>
       </relation>
     </passage>
   </document>
