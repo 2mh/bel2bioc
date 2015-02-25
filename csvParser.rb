@@ -3,10 +3,13 @@
 require 'csv'
 require 'ostruct'
 
-ARGV[0] = "../Task1/DevelopmentSetTask1.txt"
+unless ARGV[0].nil?
+	arg0 = ARGV[0]
+else
+	arg0 = "temp_data/DevelopmentSetTask1.csv"
+end
 
-
-csvTable = CSV.read(ARGV[0], {col_sep:"\t", quote_char:"¬", headers:true})
+csvTable = CSV.read(arg0, {col_sep:"\t", quote_char:"¬", headers:true})
 rowArray = []
 
 csvTable.each do |row|
@@ -20,6 +23,8 @@ rowArrayEnum = rowArray.each
 
 require 'pry'; binding.pry
 
-#cursor = rowArrayEnum.next
-#puts cursor.bel_id
-#puts cursor.sentence
+# Pry session: type `rowArrayEnum.next` to enumerate
+
+# cursor = rowArrayEnum.next
+# puts cursor.bel_id
+# puts cursor.sentence
