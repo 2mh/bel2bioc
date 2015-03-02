@@ -2,6 +2,7 @@
 # vim: ts=2 sw=2
 
 require 'bel'
+require 'ostruct'
 require_relative 'cli_walkStatement.rb'
 require_relative 'bioc_walkStatement.rb'
 
@@ -34,7 +35,7 @@ def main
 				end
 				
 				# Instantiate comment string for converted BEL statements
-				commentString = "<!--\nBioC from #{statements.length} statements"
+				commentString = "<!--\nBioC from #{statements.length} statements\n"
 				
 				statements.each do |obj|
 
@@ -47,16 +48,19 @@ def main
 						end
 						
 						# One document with one passage per statement
-						document = SimpleBioC::Document.new(collection)
-						passage = SimpleBioC::Passage.new(document)
-						passage.offset = nil
-						document.passages << passage
-						document.id = "d" + String($documentId)
+						statementObj = OpenStruct.new()
+						statementObj.obj = obj
+						statementObj.document = SimpleBioC::Document.new(collection)
+						statementObj.passage = SimpleBioC::Passage.new(statementObj.document)
+						statementObj.passage.offset = nil
+						statementObj.document.passages << statementObj.passage
+						statementObj.document.id = "d" + String($documentId)
+						
 						increment(:document)
 									
-						collection.documents << document
+						collection.documents << statementObj.document
 						
-						BioC.walkStatement(obj, document, passage, false, commentString)
+						BioC.walkStatement(statementObj, commentString)
 						
 						# Output BioC for each statement in debug mode
 						if $debug

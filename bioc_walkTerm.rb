@@ -5,17 +5,40 @@ module BioC
 	module_function
 	
 	# Recursively walk terms and parameters (leaf nodes)
-	def walkTerm(obj, sublevel, passage = nil, document = nil, relationTriple = nil, relation = nil, entity = nil, recursiveStatement = false)
+	def walkTerm(statement, sublevel, entity = nil)
 		
-		# Output of parsed terms to BioC
+		# Map subject and object when walkTerm is called non-recursively 
+		
+		if entity == :subject
+			element = "cause"
+			unless statement.nestedStatement
+				statement.currentobj = statement.obj.subject
+			else
+				statement.currentobj = statement.nestedStatement.subject
+			end
+		elsif entity == :object
+			element = "theme"
+			unless statement.nestedStatement
+				statement.currentobj = statement.obj.object
+			else
+				statement.currentobj = statement.nestedStatement.object
+			end
+		end
+		
+		# Shorthand assignments
+		obj = statement.currentobj
+		document = statement.document
+		passage = statement.passage
+		unless statement.nestedStatement
+			relation = statement.relation
+			relationTriple = statement.relationTriple
+		else
+			relation = statement.nestedRelation
+			relationTriple = statement.nestedrelationTriple
+		end
+		
 		if !obj.nil?
 			if sublevel == 0
-				# Map subject and object when walkTerm is called non-recursively 
-				if entity == :subject
-					element = "cause"
-				elsif entity == :object
-					element = "theme"
-				end
 					# Statements are relations unless they are unary
 					unless !obj.instance_of?(BEL::Language::Statement) and obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter) 
 						relationTriple[element].refid = "r" + String($relationId)
@@ -36,24 +59,32 @@ module BioC
 			# Map terms
 			#
 			if obj.instance_of?(BEL::Language::Term)
-				mapTerms(obj, document, passage, sublevel, recursiveStatement)
+				mapTerms(statement, sublevel)
 			
 			#
 			# Map parameters
 			#
 			elsif obj.instance_of?(BEL::Language::Parameter)
-				mapParameters(obj, document, passage)
+				mapParameters(statement)
 				
 			#
 			# Map statements
 			#
 			elsif obj.instance_of?(BEL::Language::Statement)
-				walkStatement(obj, document, passage, recursiveStatement=true)
+				statement.nestedStatement = obj
+				statement.insideNestedStatement = true
+				walkStatement(statement)
 			end
 		end
 	end
 	
-	def mapTerms(obj, document, passage, sublevel, recursiveStatement)
+	def mapTerms(statement, sublevel)
+		# Shorthand assignments
+		#
+		obj = statement.currentobj
+		document = statement.document
+		passage = statement.passage
+		
 		# Handle n-ary terms and unary terms containing terms or statements, n > 2
 		#
 		unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
@@ -71,7 +102,8 @@ module BioC
 				obj.arguments.each do |arg|
 					prevannotId = $annotationId
 					prevrelId = $relationId
-					walkTerm(arg, sublevel + 1, passage, document)
+					statement.currentobj = arg
+					walkTerm(statement, sublevel + 1)
 					node = SimpleBioC::Node.new(relation)
 					node.role = "member"
 					
@@ -97,7 +129,8 @@ module BioC
 			else
 				arg = obj.arguments[0]
 				prevannotId = $annotationId
-				walkTerm(arg, sublevel + 1, passage, document)
+				statement.currentobj = arg
+				walkTerm(statement, sublevel + 1)
 				node = SimpleBioC::Node.new(relation)
 				node.role = "self"
 				node.refid = "a" + String(prevannotId)
@@ -125,8 +158,15 @@ module BioC
 		end
 	end
 	
-	def mapParameters(obj, document, passage)
-	annotation = SimpleBioC::Annotation.new(document)
+	def mapParameters(statement)
+		# Shorthand assignments
+		#
+		obj = statement.currentobj
+		document = statement.document
+		passage = statement.passage
+		
+		annotation = SimpleBioC::Annotation.new(document)
+		
 		# Insert placeholder nodes
 		#
 		if $annotationTextLocationOffset
