@@ -10,8 +10,6 @@ require_relative 'bioc_walkStatement'
 require_relative 'bioc_tabulatedConversion'
 
 $debug = false
-DF = "DEFINE NAMESPACE"
-URL = 'AS URL "http://www.example.com/example.belns"'
 
 def main
 	unless ARGV.length == 0

@@ -1,3 +1,7 @@
+# Namespace definition constants
+DF = "DEFINE NAMESPACE"
+URL = 'AS URL "http://www.example.com/example.belns"'
+
 # Parse CSV, write to structured object
 def csvReader(file)
 	csvTable = CSV.read(file, {col_sep:"\t", quote_char:"¬", headers:true})
