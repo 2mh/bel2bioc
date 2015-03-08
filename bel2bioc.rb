@@ -5,8 +5,9 @@ require 'bel'
 require 'ostruct'
 require 'csv'
 require 'date'
-require_relative 'cli_walkStatement.rb'
-require_relative 'bioc_walkStatement.rb'
+require_relative 'cli_walkStatement'
+require_relative 'bioc_walkStatement'
+require_relative 'bioc_tabulatedConversion'
 
 $debug = false
 DF = "DEFINE NAMESPACE"
@@ -46,7 +47,7 @@ def main
 				puts "Error: Not a valid key file"
 				abort
 			end
-			puts "Override collection date (YYYY-MM-DD) or press Enter for system date:"
+			puts "Enter collection date (YYYY-MM-DD) or press Enter for system date:"
 			usrdate = STDIN.gets.chomp
 			unless usrdate.length == 0
 				begin
@@ -153,48 +154,6 @@ def main
 	else
 		argError
 	end
-end
-
-def csvReader(file)
-	csvTable = CSV.read(file, {col_sep:"\t", quote_char:"¬", headers:true})
-	parsedObj = OpenStruct.new()
-	parsedObj.rowArray = []
-	parsedObj.belArray = []
-	csvTable.each do |row|
-		current = OpenStruct.new()
-		current.bel_id = row[0]
-		current.bel = row[1]
-		current.sentence = row[3]
-		current.sentence_id = row[4]
-		current.pmid = row[5]
-		parsedObj.rowArray << current
-		parsedObj.belArray << row[1]
-	end
-	return parsedObj
-end
-
-
-def belBuilder(pObj)
-	documentString = ""
-	documentString << 'SET DOCUMENT Name = "BEL document generated for parsing purposes by bel2bioc"'
-	breakln(documentString)
-	documentString << 'SET DOCUMENT Description = "Note: This is an automatically created BEL document with dummy definitions. It\'s not intended for usage outside of bel2bioc conversion."'
-	
-	emptyln(documentString)
-	
-	nameSpaces = File.open("namespaces")
-	nameSpaces.each do |ns|
-		documentString << "#{DF} #{ns.chomp!} #{URL}"
-		breakln(documentString)
-	end
-	emptyln(documentString)
-	pObj.belArray.each do |bel|
-		if bel
-			documentString << bel
-			breakln(documentString)
-		end
-	end
-	return documentString
 end
 
 if __FILE__ == $0
