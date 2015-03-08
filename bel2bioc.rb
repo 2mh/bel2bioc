@@ -118,7 +118,7 @@ def main
 						statementObj.passage.text = bel_meta.sentence
 						statementObj.tabulated = true
 						if args.include? 'a'
-							statementObj.passage.infons["sentence id"] = bel_meta.sentence_id
+							statementObj.passage.infons["Sentence id"] = bel_meta.sentence_id
 							statementObj.passage.infons["PMID"] = bel_meta.pmid
 						end
 					end

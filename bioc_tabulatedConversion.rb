@@ -7,9 +7,11 @@ def csvReader(file)
 	csvTable.each do |row|
 		current = OpenStruct.new()
 		current.bel_id = row[0]
+		current.bel_id.slice! "BEL:"
 		current.bel = row[1]
 		current.sentence = row[3]
 		current.sentence_id = row[4]
+		current.sentence_id.slice! "SEN:"
 		current.pmid = row[5]
 		parsedObj.rowArray << current
 		parsedObj.belArray << row[1]
