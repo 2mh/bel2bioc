@@ -18,7 +18,7 @@ def main
 		argError
 	end
 		
-	arglist = ['b', 'c', 'd', 'p', 't', 'a', 'm']
+	arglist = ['b', 'c', 'd', 'p', 't', 'a', 'm', 'o']
 	hasargs = false
 	
 	args.each do |arg|
@@ -61,10 +61,13 @@ def main
 	end
 	
 	if hasargs
+		puts "Files to process: #{ARGV[1..-1].length}"
 		ARGV[1..-1].each do |infile|
+			puts "Processing #{infile} ..."
 			unless args.include? 't'
 				belfile = File.new(infile, "r")
 			else
+				puts "Generating BEL from tabulated file ..."
 				csvObj = csvReader(infile)
 				belfile = belBuilder(csvObj)
 			end
@@ -75,6 +78,7 @@ def main
 			# Create parse tree top-down
 			statements = []
 
+			puts "Parsing BEL document ..."
 			# Extract BEL statements from the document
 			BEL::Script.parse(belfile, namespace_mapping) do |obj|
 				if obj.instance_of?(BEL::Language::Statement)
@@ -82,11 +86,20 @@ def main
 				end
 			end
 			
-			# Instantiate comment string for converted BEL statements
-			commentString = "<!--\nBioC from #{statements.length} statements\n"
+			if statements.length == 0
+				puts "Error: Invalid or empty BEL document #{infile}. Use argument 't' for tabulated source data."
+				abort
+			end
 			
-			statements.each do |obj|
-
+			# Instantiate comment string for converted BEL statements
+			counterCommentString = "<!--\nBioC from #{statements.length} statements\n"
+			commentString = counterCommentString.clone
+			counterCommentString << "-->\n"
+			
+			
+			puts "Building BioC structure ..."
+			statements.each_with_index do |obj, idx|
+			
 				# BioC generation
 				if args.include? 'b'
 
@@ -130,7 +143,11 @@ def main
 						xml = SimpleBioC.to_xml(collection)
 						puts xml
 					end
-
+					
+					# trigger garbage collection every 1000 statements
+					if idx != 0 and idx % 1000 == 0
+						puts "Processed #{idx} statements ..."
+					end
 				# CLI output 
 				elsif args.include? 'c'
 					Cli.walkStatement(obj)
@@ -140,15 +157,23 @@ def main
 			# BioC comment splicing and output (normal mode)
 			if args.include? 'b' and !$debug
 				commentString << "-->\n"
+				puts "Generating XML ..."
 				xml = SimpleBioC.to_xml(collection)
-				xml = String(xml).lines.insert(1, commentString).join("")
+				if args.include? 'o'
+					finalCommentString = commentString
+				else
+					finalCommentString = counterCommentString
+				end
+				xml = String(xml).lines.insert(1, finalCommentString).join("")
 				outfile = infile.rpartition(".")[0] + ".xml"
-				File.open(outfile, 'w') { |file| file.write(xml) }
+				outfileObj = File.open(outfile, 'w') { |file| file.write(xml) }
 				puts "Conversion of #{infile} completed."
+				outfileObj = nil
 			end
 			counterReset()
 		end
 		puts "Done."
+		exit! # Need to force exit for large tabulated input data sets (cause unknown)
 	else
 		argError
 	end

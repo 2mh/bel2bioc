@@ -41,6 +41,7 @@ def argError
 	t: Treat input file as tabulated (CSV), use BEL Id as document id, sentence as passage text
 	a: Only in combination with t: Add sentence Id and PMID as passage infons
 	m: Ask user to enter collection meta-data
+	o: Include original BEL statements as comment
 	EOS
 	puts string
 	abort
