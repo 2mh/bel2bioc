@@ -36,7 +36,7 @@ def main
 	if !$debug
 		collection = SimpleBioC::Collection.new()
 		if args.include? 'm'
-			puts "Enter collection souce:"
+			puts "Enter collection source:"
 			collection.source = STDIN.gets.strip
 			puts "Enter collection key:"
 			usrkey = STDIN.gets.chomp
@@ -46,7 +46,7 @@ def main
 				puts "Error: Not a valid key file"
 				abort
 			end
-			puts "Override collection date (YYYY-MM-DD) or leave blank for system date:"
+			puts "Override collection date (YYYY-MM-DD) or press Enter for system date:"
 			usrdate = STDIN.gets.chomp
 			unless usrdate.length == 0
 				begin

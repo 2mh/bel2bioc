@@ -3,10 +3,7 @@ require_relative 'helpers'
 
 module BioC
 	module_function
-	
-	# Treat modifications separately
-	modifications = [:fus, :pmod, :sub, :trunc]
-	
+		
 	# Recursively walk terms and parameters (leaf nodes)
 	def walkTerm(statement, sublevel, entity = nil, parentFunction = nil, argidx = nil)
 		
