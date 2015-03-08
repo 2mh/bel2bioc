@@ -4,8 +4,11 @@ require_relative 'helpers'
 module BioC
 	module_function
 	
+	# Treat modifications separately
+	modifications = [:fus, :pmod, :sub, :trunc]
+	
 	# Recursively walk terms and parameters (leaf nodes)
-	def walkTerm(statement, sublevel, entity = nil)
+	def walkTerm(statement, sublevel, entity = nil, parentFunction = nil, argidx = nil)
 		
 		# Map subject and object when walkTerm is called non-recursively 
 		
@@ -59,17 +62,19 @@ module BioC
 			# Map terms
 			#
 			if obj.instance_of?(BEL::Language::Term)
-				mapTerms(statement, sublevel)
+				mapTerms(statement, sublevel, parentFunction, argidx)
 			
 			#
 			# Map parameters
 			#
 			elsif obj.instance_of?(BEL::Language::Parameter)
-				mapParameters(statement)
+				mapParameters(statement, parentFunction, argidx)
 				
 			#
 			# Map statements
 			#
+			
+			# ToDo: Add support for modifications with nested statements
 			elsif obj.instance_of?(BEL::Language::Statement)
 				statement.nestedStatement = obj
 				statement.insideNestedStatement = true
@@ -78,12 +83,14 @@ module BioC
 		end
 	end
 	
-	def mapTerms(statement, sublevel)
+	def mapTerms(statement, sublevel, parentFunction = nil, argidx = nil)
 		# Shorthand assignments
 		#
 		obj = statement.currentobj
 		document = statement.document
 		passage = statement.passage
+		
+		objFunction = obj.fx.short_form
 		
 		# Handle n-ary terms and unary terms containing terms or statements, n > 2
 		#
@@ -94,31 +101,62 @@ module BioC
 			relation.infons["BEL (full)"] = String(obj)
 			relation.infons["BEL (relative)"] = String(obj).clone
 			passage.relations << relation
+			
 			increment(:relation)
 			
 			# Handle n-ary terms
 			#
 			if obj.arguments.length > 1
+				argidy = 0
 				obj.arguments.each do |arg|
 					prevannotId = $annotationId
 					prevrelId = $relationId
 					statement.currentobj = arg
-					walkTerm(statement, sublevel + 1)
+					walkTerm(statement, sublevel + 1, nil, objFunction, argidy)
 					node = SimpleBioC::Node.new(relation)
 					node.role = "member"
 					
 					if arg.instance_of?(BEL::Language::Term)
 						
+						argFunction = arg.fx.short_form
+						
 						# Treat argument terms of length 1 and having a parameter as annotation
 						unless arg.arguments.length == 1 and arg.arguments[0].instance_of?(BEL::Language::Parameter)
 							node.refid = "r" + String(prevrelId)
+							if objFunction == :p
+								case argFunction
+									when :fus
+									when :pmod
+										node.role = "proteinModification"
+									when :sub
+									when :trunc
+								end
+							end
 						else
 							node.refid = "a" + String(prevannotId)
 						end
-					
 					# Treat argument parameters always as annotation
 					elsif arg.instance_of?(BEL::Language::Parameter)
 						node.refid = "a" + String(prevannotId)
+						case objFunction
+						# TODO: Needs to be completed
+							when :fus
+							when :pmod
+								case argidy
+									when 0
+										node.role = "ModificationType"
+									when 1
+										node.role = "AminoAcidCode"
+								end
+							when :sub
+							when :trunc
+							when :p
+								case argidy
+									when 0
+										node.role = "protein"
+								end
+						end
+						argidy += 1
 					end
 					relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
 					relation.nodes << node
@@ -142,7 +180,7 @@ module BioC
 		# (no argument substitution, no recursive walking)
 		else
 			annotation = SimpleBioC::Annotation.new(document)
-			if $annotationTextLocationOffset
+			if statement.placeholders
 				location = SimpleBioC::Location.new(annotation)
 				location.offset = nil
 				location.length = nil
@@ -158,7 +196,7 @@ module BioC
 		end
 	end
 	
-	def mapParameters(statement)
+	def mapParameters(statement, parentFunction = nil, argidx = nil)
 		# Shorthand assignments
 		#
 		obj = statement.currentobj
@@ -166,20 +204,35 @@ module BioC
 		passage = statement.passage
 		
 		annotation = SimpleBioC::Annotation.new(document)
+		passage.annotations << annotation
+		annotation.infons["BEL (full)"] = String(obj)
 		
 		# Insert placeholder nodes
 		#
-		if $annotationTextLocationOffset
+		if statement.placeholders
 			location = SimpleBioC::Location.new(annotation)
 			location.offset = nil
 			location.length = nil
 			annotation.locations << location
 			annotation.text = nil
 		end
-		passage.annotations << annotation
+		case parentFunction
+		# TODO: Needs to be completed
+			when :fus
+			when :pmod
+				case argidx
+					when 0
+						annotation.infons["ModificationType"] = String(obj)
+					when 1
+						annotation.infons["AminoAcidCode"] = String(obj)
+				end
+			when :sub
+			when :trunc
+			else
+				annotation.infons[obj.ns] = obj.value
+		end
 		annotation.id = "a" + String($annotationId)
 		increment(:annotation)
-		annotation.infons["BEL (full)"] = String(obj)
-		annotation.infons[obj.ns] = obj.value
+		
 	end
 end

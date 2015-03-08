@@ -8,7 +8,7 @@ $debug = false
 
 module Cli
 	module_function
-	def walkStatement(obj, document, passage = nil, recursiveStatement = false)
+	def walkStatement(obj)
 		if $debug
 			puts "[[ #{obj.to_bel} ]]\n".bold
 		else

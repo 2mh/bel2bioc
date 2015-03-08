@@ -2,8 +2,6 @@ require 'simple_bioc'
 require_relative 'helpers'
 require_relative 'bioc_walkTerm'
 
-$annotationTextLocationOffset = true
-
 # Initialize Id sequences
 $documentId = 1000
 $annotationId = 100
@@ -78,9 +76,8 @@ module BioC
 			increment(:annotation)
 			annotation.infons["trigger"] = obj.relationship
 			
-			# Insert placeholder nodes 'text' and 'location'
-			if $annotationTextLocationOffset
-				annotation.text = nil
+			# Insert placeholder nodes for 'location'
+			if statement.placeholders
 				location = SimpleBioC::Location.new(annotation)
 				location.offset = nil
 				location.length = nil
