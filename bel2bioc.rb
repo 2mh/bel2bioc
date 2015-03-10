@@ -12,12 +12,18 @@ require_relative 'bioc_tabulatedConversion'
 $debug = false
 
 def main
+	argv = ARGV[0]
+	
 	unless ARGV.length == 0
-		args = ARGV[0].split ""
+		args = argv.split ""
 	else
 		argError
 	end
-		
+	
+	unless args.include? 'b' or args.include? 'c'
+		argError
+	end
+	
 	arglist = ['b', 'c', 'd', 'p', 't', 'a', 'm', 'o']
 	hasargs = false
 	
