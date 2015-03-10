@@ -11,7 +11,7 @@ module BioC
 	module_function
 	# Walk statement tree from the root
 	def walkStatement(statement, commentString = nil)
-		# Shorthand assignments
+		# Shorthand assignments	
 		unless statement.nestedStatement
 			obj = statement.obj
 			commentString << "#{obj.to_bel}\n"
@@ -60,7 +60,6 @@ module BioC
 		walkTerm(statement, 0, :subject)
 		
 		unless obj.relationship.nil?
-		
 			# Object annotation
 			walkTerm(statement, 0, :object)
 			

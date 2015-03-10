@@ -39,7 +39,7 @@ module BioC
 			relationTriple = statement.nestedrelationTriple
 		end
 		
-		if !obj.nil?
+		if !obj.nil? and !statement.obj.relationship.nil?
 			if sublevel == 0
 					# Statements are relations unless they are unary
 					unless !obj.instance_of?(BEL::Language::Statement) and obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
@@ -78,6 +78,8 @@ module BioC
 				statement.insideNestedStatement = true
 				walkStatement(statement)
 			end
+		elsif statement.obj.relationship.nil?
+			puts "Note: Skipping #{statement.obj}, single-term statements not (yet) supported."
 		end
 	end
 	
