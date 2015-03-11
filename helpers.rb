@@ -80,10 +80,6 @@ def createRelation(statement)
 end
 
 def unaryTermParameter(statement, relation, annotationId, objFunction, argidy, sublevel)
-	##
-	## Continue here
-	##
-	##
 	obj = statement.currentobj
 	debug = statement.debug
 	
