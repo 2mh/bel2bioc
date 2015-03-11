@@ -4,7 +4,12 @@ URL = 'AS URL "http://www.example.com/example.belns"'
 
 # Parse CSV, write to structured object
 def csvReader(file)
-	csvTable = CSV.read(file, {col_sep:"\t", quote_char:"¬", headers:true})
+	begin
+		csvTable = CSV.read(file, {col_sep:"\t", quote_char:"¬", headers:true})
+	rescue ArgumentError
+		puts "Error: Unsupported encoding, tabulated/CSV file must be in UTF-8 format."
+		abort
+	end
 	parsedObj = OpenStruct.new()
 	parsedObj.rowArray = []
 	parsedObj.belArray = []
@@ -22,6 +27,7 @@ def csvReader(file)
 			parsedObj.belArray << row[1]
 		end
 	end
+	parsedObj.linecount = csvTable.length
 	return parsedObj
 end
 

@@ -11,6 +11,7 @@ module BioC
 	module_function
 	# Walk statement tree from the root
 	def walkStatement(statement, commentString = nil)
+		
 		# Shorthand assignments	
 		unless statement.nestedStatement
 			obj = statement.obj
@@ -18,9 +19,10 @@ module BioC
 		else
 			obj = statement.nestedStatement
 		end
+		
 		document = statement.document
+		debug = statement.debug
 	
-		# Output of parsed nodes to command-line
 		# Unless there is no object
 		unless obj.relationship.nil?
 			# Create relationship triple
@@ -34,8 +36,10 @@ module BioC
 			relation.id = "r" + String($relationId)
 			increment(:relation)
 			relation.infons["type"] = String(obj.relationship)
-			relation.infons["BEL (full)"] = String(obj)
-			relation.infons["BEL (relative)"] = String(obj).clone
+			if debug
+				relation.infons["BEL (full)"] = String(obj)
+				relation.infons["BEL (relative)"] = String(obj).clone
+			end
 			causeNode = SimpleBioC::Node.new(relation)
 			causeNode.role = "cause"
 			themeNode = SimpleBioC::Node.new(relation)
@@ -59,6 +63,7 @@ module BioC
 		# Subject annotation
 		walkTerm(statement, 0, :subject)
 		
+		# Relationship annotation
 		unless obj.relationship.nil?
 			# Object annotation
 			walkTerm(statement, 0, :object)
@@ -74,8 +79,9 @@ module BioC
 			end
 			increment(:annotation)
 			annotation.infons["trigger"] = obj.relationship
+			annotation.infons["type"] = "relationship"
+			annotation
 			
-			# Insert placeholder nodes for 'location'
 			if statement.placeholders
 				location = SimpleBioC::Location.new(annotation)
 				location.offset = nil

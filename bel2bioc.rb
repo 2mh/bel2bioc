@@ -20,7 +20,7 @@ def main
 		argError
 	end
 	
-	unless args.include? 'b' or args.include? 'c'
+	unless args[0] == '-' and (args.include? 'b' or args.include? 'c')
 		argError
 	end
 	
@@ -68,6 +68,7 @@ def main
 	
 	if hasargs
 		puts "Files to process: #{ARGV[1..-1].length}"
+		if args.include? 'd'; puts "Debugging mode active, single collection per statement, output to stdout."; end
 		ARGV[1..-1].each do |infile|
 			puts "Processing #{infile} ..."
 			unless args.include? 't'
@@ -95,6 +96,8 @@ def main
 			if statements.length == 0
 				puts "Error: Invalid or empty BEL document #{infile}. Use argument 't' for tabulated source data."
 				abort
+			elsif args.include? 't' and statements.length < csvObj.linecount
+				puts "Warning: Only #{statements.length} of #{csvObj.linecount} BEL statements in the source file have been parsed. \nPossible error in the BEL syntax on line #{statements.length + 2} of #{infile}."
 			end
 			
 			# Instantiate comment string for converted BEL statements
@@ -122,6 +125,10 @@ def main
 					statementObj.passage.offset = nil
 					statementObj.document.passages << statementObj.passage
 					
+					if $debug
+						statementObj.debug = true
+					end
+					
 					if args.include? 'p'
 						statementObj.placeholders = true
 					end
@@ -134,7 +141,7 @@ def main
 						statementObj.document.id = bel_meta.bel_id
 						statementObj.passage.text = bel_meta.sentence
 						statementObj.tabulated = true
-						if args.include? 'a'
+						unless args.include? 'a'
 							statementObj.passage.infons["Sentence id"] = bel_meta.sentence_id
 							statementObj.passage.infons["PMID"] = bel_meta.pmid
 						end

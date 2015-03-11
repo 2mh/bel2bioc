@@ -4,6 +4,7 @@ require_relative 'helpers'
 module BioC
 	module_function
 	
+	# Treat modification functions specially
 	$modifications = [:fus, :pmod, :sub, :trunc]
 		
 	# Recursively walk terms and parameters (leaf nodes)
@@ -31,6 +32,8 @@ module BioC
 		obj = statement.currentobj
 		document = statement.document
 		passage = statement.passage
+		debug = statement.debug
+		
 		unless statement.nestedStatement
 			relation = statement.relation
 			relationTriple = statement.relationTriple
@@ -47,14 +50,15 @@ module BioC
 					else
 						relationTriple[element].refid = "a" + String($annotationId)
 					end
-				
-				# Substitute elements for relative original BEL string
-				substitutionString = relation.infons["BEL (relative)"].sub String(obj), relationTriple[element].refid
-				if entity == :object
-					#strip remaining brackets
-					substitutionString = substitutionString.tr('()','')
+				if debug
+					# Substitute elements for relative original BEL string
+					substitutionString = relation.infons["BEL (relative)"].sub String(obj), relationTriple[element].refid
+					if entity == :object
+						#strip remaining brackets
+						substitutionString = substitutionString.tr('()','')
+					end
+					relation.infons["BEL (relative)"] = substitutionString
 				end
-				relation.infons["BEL (relative)"] = substitutionString
 			end
 			
 			#
@@ -89,6 +93,7 @@ module BioC
 		obj = statement.currentobj
 		document = statement.document
 		passage = statement.passage
+		debug = statement.debug
 		
 		objFunction = obj.fx.short_form
 		argidy = 0
@@ -96,14 +101,7 @@ module BioC
 		# Handle n-ary terms and unary terms containing terms or statements, n > 2
 		#
 		unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
-			relation = SimpleBioC::Relation.new(document)
-			relation.id = "r" + String($relationId)
-			relation.infons["type"] = obj.fx.long_form
-			relation.infons["BEL (full)"] = String(obj)
-			relation.infons["BEL (relative)"] = String(obj).clone
-			passage.relations << relation
-			
-			increment(:relation)
+			relation = createRelation(statement)
 			
 			# Handle n-ary terms
 			#
@@ -142,15 +140,14 @@ module BioC
 					elsif arg.instance_of?(BEL::Language::Parameter)
 						node.refid = "a" + String(prevannotId)
 						case objFunction
-						# TODO: Needs to be completed
 							when :fus
 								case argidy
 									when 0
 										node.role = "protein"
 									when 1
-										node.role = "5'PartnerNucleotide"
+										node.role = "StartNucleotide"
 									when 2
-										node.role = "3'PartnerNucleotide"
+										node.role = "EndNucleotide"
 								end
 							when :pmod
 								case argidy
@@ -183,22 +180,16 @@ module BioC
 						end
 						argidy += 1
 					end
-					relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
+					if debug
+						relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
+					end
 					relation.nodes << node
 				end
 
 			# Handle unary terms containing terms (treat arguments as annotations)
 			#
 			else
-				arg = obj.arguments[0]
-				prevannotId = $annotationId
-				statement.currentobj = arg
-				walkTerm(statement, sublevel + 1)
-				node = SimpleBioC::Node.new(relation)
-				node.role = "self"
-				node.refid = "a" + String(prevannotId)
-				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
-				relation.nodes << node
+				unaryTermParameter(statement, relation, $annotationId, objFunction, argidy, sublevel)
 			end
 		
 		# Handle unary terms containing parameters
@@ -216,44 +207,23 @@ module BioC
 				passage.annotations << annotation
 				annotation.id = "a" + String($annotationId)
 				increment(:annotation)
-				annotation.infons["BEL (full)"] = String(obj)
+				if debug
+					annotation.infons["BEL (full)"] = String(obj)
+				end
 				annotation.infons[obj.arguments[0].ns] = obj.arguments[0].value
+				annotation.infons["type"] = obj.fx.long_form
 			else
-				# TODO: Clean-up (code duplication from above)
-				
+			# Handle single-argument modification functions
+				relation = createRelation(statement)
 				# Put in separate function definition
-				relation = SimpleBioC::Relation.new(document)
-				relation.id = "r" + String($relationId)
-				relation.infons["type"] = obj.fx.long_form
-				relation.infons["BEL (full)"] = String(obj)
-				relation.infons["BEL (relative)"] = String(obj).clone
-				passage.relations << relation
 				
-				increment(:relation)
+				node = unaryTermParameter(statement, relation, $annotationId, objFunction, argidy, sublevel)
 				
-				# Put in separate function definition
-				arg = obj.arguments[0]
-				prevannotId = $annotationId
-				statement.currentobj = arg
-				walkTerm(statement, sublevel + 1, nil, objFunction, argidy)
-				node = SimpleBioC::Node.new(relation)
-				node.role = "self"
-				node.refid = "a" + String(prevannotId)
-				relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
-				relation.nodes << node
-				
-				#Put in separate function
 				case objFunction
 					when :pmod
-						case argidy
-							when 0
-								node.role = "ModificationType"
-						end
+						node.role = "ModificationType"
 					when :fus
-						case argidy
-							when 0
-								node.role = "protein"
-						end
+						node.role = "protein"
 				end
 			end
 		end
@@ -264,10 +234,13 @@ module BioC
 		obj = statement.currentobj
 		document = statement.document
 		passage = statement.passage
+		debug = statement.debug
 		
 		annotation = SimpleBioC::Annotation.new(document)
 		passage.annotations << annotation
-		annotation.infons["BEL (full)"] = String(obj)
+		if debug
+			annotation.infons["BEL (full)"] = String(obj)
+		end
 		
 		# Insert placeholder nodes
 		#
@@ -284,9 +257,9 @@ module BioC
 					when 0
 						annotation.infons["protein"] = String(obj)
 					when 1
-						annotation.infons["5'PartnerNucleotide"] = String(obj)
+						annotation.infons["StartNucleotide"] = String(obj)
 					when 2
-						annotation.infons["3'PartnerNucleotide"] = String(obj)
+						annotation.infons["EndNucleotide"] = String(obj)
 				end
 			when :pmod
 				case argidx
@@ -314,7 +287,12 @@ module BioC
 			else
 				annotation.infons[obj.ns] = obj.value
 		end
+		unless obj.ns.nil?
+			annotation.infons["type"] = "protein"
+		else
+			annotation.infons["type"] = "ModificationArgument"
+		end
 		annotation.id = "a" + String($annotationId)
-		increment(:annotation)		
+		increment(:annotation)
 	end
 end
