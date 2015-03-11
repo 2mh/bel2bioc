@@ -1,7 +1,12 @@
 #!/usr/bin/env ruby
 # vim: ts=2 sw=2
 
-require 'bel'
+begin
+	require 'bel'
+	rescue LoadError
+		puts "Error: bel2bioc requires the ruby gem bel.rb (https://github.com/OpenBEL/bel.rb)"
+		abort
+end
 require 'ostruct'
 require 'csv'
 require 'date'

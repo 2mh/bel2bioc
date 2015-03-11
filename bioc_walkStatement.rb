@@ -1,4 +1,10 @@
-require 'simple_bioc'
+begin
+	require 'simple_bioc'
+	rescue LoadError
+		puts "Error: BioC mode requires the ruby gem simple_bioc (https://github.com/dongseop/simple_bioc)"
+		puts "Use option `c` to inspect the BEL statement."
+		abort
+end
 require_relative 'helpers'
 require_relative 'bioc_walkTerm'
 
