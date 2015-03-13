@@ -5,8 +5,7 @@ Usage:
 	bel2bioc.rb -<args> <files>
 ##Command-line arguments:
 
-**b**: Output to BioC. Provide multiple file names separated by spaces
-for batch processing. Name of each output file is <file>.xml
+**b**: Output to BioC. Provide multiple file names separated by spaces for batch processing. Name of each output file is <file>.xml
 
 **p**: Insert empty placeholder nodes for 'location'
 
