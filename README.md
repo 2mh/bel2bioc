@@ -2,7 +2,7 @@
 Project for the conversion of OpenBEL files into BioC XML data.
 
 Usage: 
-	bel2bioc.rb -<args> <files>
+`bel2bioc.rb -<args> <files>`
 ##Command-line arguments:
 
 **b**: Output to BioC. Provide multiple file names separated by spaces for batch processing. Name of each output file is <file>.xml
