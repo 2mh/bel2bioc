@@ -7,7 +7,7 @@ Usage:
 
 **b**: Output to BioC. Provide multiple file names separated by spaces
 for batch processing. Name of each output file is <file>.xml
---------------------------------------------------------------------
+
 **p**: Insert empty placeholder nodes for 'location'
 
 **t**: Treat input file as tabulated (CSV), use BEL Id as document id
@@ -19,7 +19,9 @@ as passage infons.
 **m**: Ask user to enter collection meta-data
 
 **o**: Include original BEL statements as comment
---------------------------------------------------------------------
+
+### Debugging
+
 **c**: Output of attributes to CLI (debugging). Output should be piped to
    `more` or `less -R` (due to color coding).
    
