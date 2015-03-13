@@ -28,6 +28,7 @@ module BioC
 		
 		document = statement.document
 		debug = statement.debug
+		includeBEL = statement.includeBEL
 	
 		# Unless there is no object
 		unless obj.relationship.nil?
@@ -42,7 +43,7 @@ module BioC
 			relation.id = "r" + String($relationId)
 			increment(:relation)
 			relation.infons["type"] = String(obj.relationship)
-			if debug
+			if includeBEL
 				relation.infons["BEL (full)"] = String(obj)
 				relation.infons["BEL (relative)"] = String(obj).clone
 			end

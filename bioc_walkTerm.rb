@@ -33,6 +33,7 @@ module BioC
 		document = statement.document
 		passage = statement.passage
 		debug = statement.debug
+		includeBEL = statement.includeBEL
 		
 		unless statement.nestedStatement
 			relation = statement.relation
@@ -50,7 +51,7 @@ module BioC
 					else
 						relationTriple[element].refid = "a" + String($annotationId)
 					end
-				if debug
+				if includeBEL
 					# Substitute elements for relative original BEL string
 					substitutionString = relation.infons["BEL (relative)"].sub String(obj), relationTriple[element].refid
 					if entity == :object
@@ -94,6 +95,7 @@ module BioC
 		document = statement.document
 		passage = statement.passage
 		debug = statement.debug
+		includeBEL = statement.includeBEL
 		
 		objFunction = obj.fx.short_form
 		argidy = 0
@@ -207,7 +209,7 @@ module BioC
 				passage.annotations << annotation
 				annotation.id = "a" + String($annotationId)
 				increment(:annotation)
-				if debug
+				if includeBEL
 					annotation.infons["BEL (full)"] = String(obj)
 				end
 				annotation.infons[obj.arguments[0].ns] = obj.arguments[0].value
@@ -235,10 +237,11 @@ module BioC
 		document = statement.document
 		passage = statement.passage
 		debug = statement.debug
+		includeBEL = statement.includeBEL
 		
 		annotation = SimpleBioC::Annotation.new(document)
 		passage.annotations << annotation
-		if debug
+		if includeBEL
 			annotation.infons["BEL (full)"] = String(obj)
 		end
 		

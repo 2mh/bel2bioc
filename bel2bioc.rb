@@ -29,7 +29,7 @@ def main
 		argError
 	end
 	
-	arglist = ['b', 'c', 'd', 'p', 't', 'a', 'm', 'o']
+	arglist = ['b', 'c', 'd', 'p', 't', 'a', 'm', 'o', 's']
 	hasargs = false
 	
 	args.each do |arg|
@@ -136,6 +136,10 @@ def main
 					
 					if args.include? 'p'
 						statementObj.placeholders = true
+					end
+					
+					if args.include? 'i'
+						statementObj.includeBEL = true
 					end
 					
 					unless args.include? 't'

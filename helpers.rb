@@ -51,9 +51,9 @@ o: Include original BEL statements as comment
 --------------------------------------------------------------------
 c: Output of attributes to CLI (debugging). Output should be piped to
    `more` or `less -R` (due to color coding).
-d: Debugging mode: Export each statement as separate BioC file, 
-   includes additional nodes with full absolute BEL statement and 
+i: Includes additional nodes with full absolute BEL statement and 
    relative BEL statement with relation and annotation ids
+d: CLI debugging mode: Export each statement as separate BioC file, 
 --------------------------------------------------------------------
 	EOS
 	puts string
@@ -65,12 +65,13 @@ def createRelation(statement)
 	passage = statement.passage
 	document = statement.document
 	debug = statement.debug
+	includeBEL = statement.includeBEL
 	
 	# Put in separate function definition
 	relation = SimpleBioC::Relation.new(document)
 	relation.id = "r" + String($relationId)
 	relation.infons["type"] = obj.fx.long_form
-	if debug
+	if includeBEL
 		relation.infons["BEL (full)"] = String(obj)
 		relation.infons["BEL (relative)"] = String(obj).clone
 	end
@@ -82,6 +83,7 @@ end
 def unaryTermParameter(statement, relation, annotationId, objFunction, argidy, sublevel)
 	obj = statement.currentobj
 	debug = statement.debug
+	includeBEL = statement.includeBEL
 	
 	arg = obj.arguments[0]
 	prevannotId = annotationId
@@ -90,7 +92,7 @@ def unaryTermParameter(statement, relation, annotationId, objFunction, argidy, s
 	node = SimpleBioC::Node.new(relation)
 	node.role = "self"
 	node.refid = "a" + String(prevannotId)
-	if debug
+	if includeBEL
 		relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
 	end
 	relation.nodes << node
