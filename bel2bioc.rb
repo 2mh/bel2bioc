@@ -166,7 +166,7 @@ def main
 						puts xml
 					end
 					
-					# trigger garbage collection every 1000 statements
+					# Simple progress indicator for large input data sets
 					if idx != 0 and idx % 1000 == 0
 						puts "Processed #{idx} statements ..."
 					end

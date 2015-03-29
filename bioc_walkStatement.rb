@@ -51,15 +51,15 @@ module BioC
 			causeNode.role = "cause"
 			themeNode = SimpleBioC::Node.new(relation)
 			themeNode.role = "theme"
-			triggerNode = SimpleBioC::Node.new(relation)
-			triggerNode.role = "trigger"
+			relationshipNode = SimpleBioC::Node.new(relation)
+			relationshipNode.role = "relationship"
 			relation.nodes << causeNode
 			relation.nodes << themeNode
-			relation.nodes << triggerNode
+			relation.nodes << relationshipNode
 			statement.passage.relations << relation
 			
 			# Hash with references to the triple nodes
-			refhash = {"cause" => causeNode, "theme" => themeNode, "trigger" => triggerNode}
+			refhash = {"cause" => causeNode, "theme" => themeNode, "relationship" => relationshipNode}
 			unless statement.nestedStatement
 				statement.relationTriple = refhash
 			else
@@ -78,23 +78,15 @@ module BioC
 			# Relation annotation
 			annotation = SimpleBioC::Annotation.new(document)
 			annotation.id = "a" + String($annotationId)
-			statement.relationTriple["trigger"].refid = annotation.id
+			statement.relationTriple["relationship"].refid = annotation.id
 			unless statement.insideNestedStatement
-				statement.relationTriple["trigger"].refid = annotation.id
+				statement.relationTriple["relationship"].refid = annotation.id
 			else
-				statement.nestedrelationTriple["trigger"].refid = annotation.id
+				statement.nestedrelationTriple["relationship"].refid = annotation.id
 			end
 			increment(:annotation)
-			annotation.infons["trigger"] = obj.relationship
+			annotation.infons["relationship"] = obj.relationship
 			annotation.infons["type"] = "relationship"
-			annotation
-			
-			if statement.placeholders
-				location = SimpleBioC::Location.new(annotation)
-				location.offset = nil
-				location.length = nil
-				annotation.locations << location
-			end
 			statement.passage.annotations << annotation
 			statement.insideNestedStatement = false
 		end

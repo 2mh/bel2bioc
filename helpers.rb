@@ -53,7 +53,7 @@ c: Output of attributes to CLI (debugging). Output should be piped to
    `more` or `less -R` (due to color coding).
 i: Includes additional nodes with full absolute BEL statement and 
    relative BEL statement with relation and annotation ids
-d: CLI debugging mode: Export each statement as separate BioC file, 
+d: CLI debugging mode: Export each statement as separate BioC collection.
 --------------------------------------------------------------------
 	EOS
 	puts string
