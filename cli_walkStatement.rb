@@ -23,8 +23,6 @@ module Cli
 		Cli.walkTerm(obj.subject, 0)
 		
 		puts "Relationship:".black.on_green.bold + " " + String(obj.relationship)
-        
-        require 'pry'; binding.pry
 		
 		puts "Object:".black.on_green.bold + " " + String(obj.object)
 		
