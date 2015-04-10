@@ -40,7 +40,12 @@ def belBuilder(pObj)
 	
 	emptyln(documentString)
 	
-	nameSpaces = File.open("namespaces")
+    begin
+        nameSpaces = File.open("namespaces")
+    rescue Errno::ENOENT
+        puts "Error: Namespace listing file 'namespaces' required for tabulated file conversion but missing."
+        abort
+    end
 	nameSpaces.each do |ns|
 		documentString << "#{DF} #{ns.chomp!} #{URL}"
 		breakln(documentString)
