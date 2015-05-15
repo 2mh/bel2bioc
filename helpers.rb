@@ -49,6 +49,8 @@ a: Only in combination with t: Do not include sentence Id and PMID
 m: Ask user to enter collection meta-data
 o: Include original BEL statements as comment
 --------------------------------------------------------------------
+r: Generate BioC that is compatible with the Brat2BioC converter
+   by NICTA Biomedical Informatics.
 c: Output of attributes to CLI (debugging). Output should be piped to
    `more` or `less -R` (due to color coding).
 i: Includes additional nodes with full absolute BEL statement and 

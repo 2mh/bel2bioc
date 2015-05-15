@@ -29,7 +29,7 @@ def main
 		argError
 	end
 	
-	arglist = ['b', 'c', 'd', 'p', 't', 'a', 'm', 'o', 's']
+	arglist = ['b', 'c', 'd', 'p', 't', 'a', 'm', 'o', 's', 'r']
 	hasargs = false
 	
 	args.each do |arg|
@@ -141,6 +141,10 @@ def main
 					if args.include? 'i'
 						statementObj.includeBEL = true
 					end
+                    
+                    if args.include? 'r'
+                        statementObj.bratcompatible = true
+                    end
 					
 					unless args.include? 't'
 						statementObj.document.id = "d" + String($documentId)
