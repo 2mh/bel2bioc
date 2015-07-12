@@ -46,7 +46,11 @@ module BioC
         if !obj.nil? and !statement.obj.relationship.nil?
             if sublevel == 0
                     # Statements are relations unless they are unary
-                    unless !obj.instance_of?(BEL::Language::Statement) and obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
+                    unless !obj.instance_of?(BEL::Language::Statement) and 
+                            statement.keeptogether and 
+                            obj.arguments.length == 1 and 
+                            obj.arguments[0].instance_of?(BEL::Language::Parameter)
+                            
                         relationTriple[element].refid = "r" + String($relationId)
                     else
                         relationTriple[element].refid = "a" + String($annotationId)
@@ -100,9 +104,10 @@ module BioC
         objFunction = obj.fx.short_form
         argidy = 0
         
-        # Handle n-ary terms and unary terms containing terms or statements, n > 2
-        #
-        unless obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
+        # Handle n-ary terms and unary terms containing terms or statements, n > 2 if keeptogether = true,
+        # else handle all terms
+        
+        unless statement.keeptogether and obj.arguments.length == 1 and obj.arguments[0].instance_of?(BEL::Language::Parameter)
             relation = createRelation(statement)
             
             # Handle n-ary terms
@@ -120,8 +125,8 @@ module BioC
                         
                         argFunction = arg.fx.short_form
                         
-                        # Treat argument terms of length 1 and having a parameter as annotation, unless modification
-                        unless arg.arguments.length == 1 and arg.arguments[0].instance_of?(BEL::Language::Parameter) and !$modifications.include? argFunction
+                        # If keeptogether = true, treat argument terms of length 1 and having a parameter as annotation, unless modification
+                        unless statement.keeptogether and arg.arguments.length == 1 and arg.arguments[0].instance_of?(BEL::Language::Parameter) and !$modifications.include? argFunction
                             node.refid = "r" + String(prevrelId)
                             if objFunction == :p
                                 case argFunction
@@ -182,19 +187,19 @@ module BioC
                         end
                         argidy += 1
                     end
-                    if debug
+                    if debug or statement.includeBEL
                         relation.infons["BEL (relative)"] = relation.infons["BEL (relative)"].sub String(arg), node.refid
                     end
                     relation.nodes << node
                 end
 
-            # Handle unary terms containing terms (treat arguments as annotations)
+            # Handle unary terms containing terms (treat arguments as annotations) if statement.keeptogether = true
             #
             else
                 unaryTermParameter(statement, relation, $annotationId, objFunction, argidy, sublevel)
             end
         
-        # Handle unary terms containing parameters
+        # Handle unary terms containing parameters if keeptogether = True
         # (no argument substitution, no recursive walking, treat as relations when term is a modification function)
         else
             unless $modifications.include? objFunction

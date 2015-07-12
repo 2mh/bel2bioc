@@ -138,12 +138,16 @@ def main
 						statementObj.placeholders = true
 					end
 					
-					if args.include? 'i'
+					if args.include? 'i' or args.include? 'd'
 						statementObj.includeBEL = true
 					end
                     
                     if args.include? 'r'
                         statementObj.bratcompatible = true
+                    end
+                    
+                    if args.include? 'k'
+                        statementObj.keeptogether = true
                     end
 					
 					unless args.include? 't'

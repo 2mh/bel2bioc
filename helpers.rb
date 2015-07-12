@@ -48,6 +48,8 @@ a: Only in combination with t: Do not include sentence Id and PMID
    as passage infons.
 m: Ask user to enter collection meta-data
 o: Include original BEL statements as comment
+k: Don't split pre-terminal abundance functions and entities into relation
+   and annotation, represent as single annotation instead.
 --------------------------------------------------------------------
 r: Generate BioC that is compatible with the Brat2BioC converter
    by NICTA Biomedical Informatics.
