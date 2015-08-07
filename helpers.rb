@@ -46,6 +46,7 @@ t: Treat input file as tabulated (CSV), use BEL Id as document id,
    sentence as passage text.
 a: Only in combination with t: Do not include sentence Id and PMID 
    as passage infons.
+h: Only in combination with t: Don't treat first row as header.
 m: Ask user to enter collection meta-data
 o: Include original BEL statements as comment
 k: Don't split pre-terminal abundance functions and entities into relation

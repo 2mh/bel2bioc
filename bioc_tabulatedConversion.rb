@@ -3,9 +3,9 @@ DF = "DEFINE NAMESPACE"
 URL = 'AS URL "http://www.example.com/example.belns"'
 
 # Parse CSV, write to structured object
-def csvReader(file)
+def csvReader(file, headers)
 	begin
-		csvTable = CSV.read(file, {col_sep:"\t", quote_char:"¬", headers:true})
+		csvTable = CSV.read(file, {col_sep:"\t", quote_char:"\0", headers:headers})
 	rescue ArgumentError
 		puts "Error: Unsupported encoding, tabulated/CSV file must be in UTF-8 format."
 		abort

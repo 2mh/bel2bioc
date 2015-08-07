@@ -80,7 +80,11 @@ def main
 				belfile = File.new(infile, "r")
 			else
 				puts "Generating BEL from tabulated file ..."
-				csvObj = csvReader(infile)
+				headers = true
+				if args.include? 'h'
+					headers = false
+				end
+				csvObj = csvReader(infile, headers)
 				belfile = belBuilder(csvObj)
 			end
 			
